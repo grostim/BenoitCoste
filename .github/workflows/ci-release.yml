@@ -57,6 +57,7 @@ jobs:
             --metadata title="Mémoires de Benoît Coste" \
             --metadata author="Benoît Coste" \
             --metadata language="fr" \
+            --epub-cover-image=portrait_benoit_coste.jpg \
             -o "Memoires_de_Benoit_Coste.epub"
 
       - name: Sauvegarde des artefacts de compilation
