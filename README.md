@@ -35,9 +35,9 @@ Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans 
 
 ## 📊 État d'avancement de la transcription
 
-- **Chapitres transcrits** : **37 / 38** (du Chapitre 1 au Chapitre 37 inclus).
-- **Dernier chapitre ajouté** : **Chapitre 37** (*Souvenirs de mon départ de Lyon et de mon voyage jusqu'à Londres (1840)*).
-- **Prochain chapitre** : **Chapitre 38** (`Originaux/Ch 38.pdf`).
+- **Chapitres transcrits** : **38 / 38** (intégralité de l'ouvrage transcrite, du Chapitre 1 au Chapitre 38 inclus).
+- **Dernier chapitre ajouté** : **Chapitre 38** (*Conclusion*).
+- **Statut** : ✅ **Transcription complète de l'ouvrage** (*Mémoires de Benoît Coste*).
 
 Consultez le tableau détaillé dans [`CONVENTIONS_TRANSCRIPTION.md`](./CONVENTIONS_TRANSCRIPTION.md#5-état-davancement-de-la-transcription).
 

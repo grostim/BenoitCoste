@@ -192,4 +192,4 @@ Le document utilise la classe `report` avec les packages suivants :
 | **Ch 35** | `Originaux/Ch 35.pdf` | Souvenirs de nos voyages de famille, de la mort de ma sœur Franchet, du mariage de Marie, etc. (1835--1839) | Transcrit |
 | **Ch 36** | `Originaux/Ch 36.pdf` | Tristes souvenirs de 1840 | Transcrit |
 | **Ch 37** | `Originaux/Ch 37.pdf` | Souvenirs de mon départ de Lyon et de mon voyage jusqu'à Londres (1840) | Transcrit |
-| **Ch 38** | `Originaux/Ch 38.pdf` | Chapitre suivant | À transcrire |
+| **Ch 38** | `Originaux/Ch 38.pdf` | Conclusion (Partie religieuse, Partie politique, Partie personnelle, Actions de grâces) | Transcrit |
