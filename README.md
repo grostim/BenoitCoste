@@ -35,9 +35,9 @@ Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans 
 
 ## 📊 État d'avancement de la transcription
 
-- **Chapitres transcrits** : **33 / 38** (du Chapitre 1 au Chapitre 33 inclus).
-- **Dernier chapitre ajouté** : **Chapitre 33** (*Souvenirs de la première communion de François, de la naissance et de la mort de Joséphine et autres souvenirs de famille (1833)*).
-- **Prochain chapitre** : **Chapitre 34** (`Originaux/Ch 34.pdf`).
+- **Chapitres transcrits** : **34 / 38** (du Chapitre 1 au Chapitre 34 inclus).
+- **Dernier chapitre ajouté** : **Chapitre 34** (*Souvenirs des journées d'avril (1834)*).
+- **Prochain chapitre** : **Chapitre 35** (`Originaux/Ch 35.pdf`).
 
 Consultez le tableau détaillé dans [`CONVENTIONS_TRANSCRIPTION.md`](./CONVENTIONS_TRANSCRIPTION.md#5-état-davancement-de-la-transcription).
 
