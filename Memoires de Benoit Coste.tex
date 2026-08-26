@@ -6,10 +6,20 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{geometry}
-\geometry{margin=2.5cm}
+\geometry{margin=2.5cm, headheight=14pt}
 \usepackage{parskip}
 \usepackage{setspace}
+\usepackage{fancyhdr}
 \usepackage{hyperref}
+
+% Configuration des en-têtes et pieds de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Mes souvenirs de soixante ans}}
+\fancyhead[R]{\small\textit{Chapitre \thechapter}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
 
 \begin{document}
 
@@ -30,8 +40,11 @@
 \end{titlepage}
 
 \newpage
+\pagestyle{plain}
 \tableofcontents
 \newpage
+
+\pagestyle{fancy}
 
 \part*{Première Époque (1781--1801)}
 \addcontentsline{toc}{part}{Première Époque (1781--1801)}
