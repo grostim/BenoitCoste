@@ -128,7 +128,11 @@ Le document utilise la classe `report` avec les packages suivants :
 - Conserver les majuscules accentuées (`À`, `É`, `È`, etc.) selon l'usage moderne.
 - Les termes latins ou en langue étrangère sont mis en italique : `\textit{in petto}`, `\textit{Télémaque}`.
 
-### 4.5 Espacements et paragraphes
+### 4.5 Casse des noms propres
+- Dans le tapuscrit d'origine, certains noms propres apparaissaient en capitales d'imprimerie intégrales (ex. `M. TESTE`, `M. ROYER`, `M. ZINDEL`).
+- **Règle de normalisation :** Tous les noms propres de personnes, de lieux ou d'institutions doivent être uniformisés en bas de casse avec initiale majuscule (Title Case) : `M. Teste`, `M. Royer`, `M. Zindel`, `Monseigneur Spina`, `M. de Fitz-James`. Seuls les chiffres romains (ex. `Pie VII`, `Louis XVI`) et les sigles/abréviations d'époque (`N.-D.`, `M.M.`) conservent des majuscules multiples.
+
+### 4.6 Espacements et paragraphes
 - Les changements de paragraphe sont marqués par une ligne vide (géré via `parskip`).
 - La ponctuation haute (`;`, `:`, `!`, `?`) bénéficie de l'espacement automatique géré par `babel[french]`.
 
