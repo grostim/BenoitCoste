@@ -181,4 +181,5 @@ Le document utilise la classe `report` avec les packages suivants :
 | **Ch 24** | `Originaux/Ch 24.pdf` | Souvenirs de la naissance du duc de Bordeaux, de celle de mes filles et du voyage de Bellevaux (1818--1821) | Transcrit |
 | **Ch 25** | `Originaux/Ch 25.pdf` | Souvenirs de l'établissement de l'œuvre de la Propagation de la Foi (1822) | Transcrit |
 | **Ch 26** | `Originaux/Ch 26.pdf` | Souvenirs de la naissance de mes garçons, de la première messe de mon beau-frère et de la mort de ma mère (1822--1826) | Transcrit |
-| **Ch 27--38** | `Originaux/Ch 27.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
+| **Ch 27** | `Originaux/Ch 27.pdf` | Souvenirs du Jubilé (1826) | Transcrit |
+| **Ch 28--38** | `Originaux/Ch 28.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
