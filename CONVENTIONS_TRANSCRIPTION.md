@@ -186,4 +186,5 @@ Le document utilise la classe `report` avec les packages suivants :
 | **Ch 29** | `Originaux/Ch 29.pdf` | Souvenirs de la Révolution de Juillet (1830) | Transcrit |
 | **Ch 30** | `Originaux/Ch 30.pdf` | Souvenirs de la mort de mon beau-père, de celle de ma belle-mère et de la procession de La Guillotière (1831) | Transcrit |
 | **Ch 31** | `Originaux/Ch 31.pdf` | Souvenirs des journées de novembre (1831) | Transcrit |
-| **Ch 32--38** | `Originaux/Ch 32.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
+| **Ch 32** | `Originaux/Ch 32.pdf` | Souvenirs de l'invasion du choléra en France (1832) | Transcrit |
+| **Ch 33--38** | `Originaux/Ch 33.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |

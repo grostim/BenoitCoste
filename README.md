@@ -35,9 +35,9 @@ Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans 
 
 ## 📊 État d'avancement de la transcription
 
-- **Chapitres transcrits** : **31 / 38** (du Chapitre 1 au Chapitre 31 inclus).
-- **Dernier chapitre ajouté** : **Chapitre 31** (*Souvenirs des journées de novembre (1831)*).
-- **Prochain chapitre** : **Chapitre 32** (`Originaux/Ch 32.pdf`).
+- **Chapitres transcrits** : **32 / 38** (du Chapitre 1 au Chapitre 32 inclus).
+- **Dernier chapitre ajouté** : **Chapitre 32** (*Souvenirs de l'invasion du choléra en France (1832)*).
+- **Prochain chapitre** : **Chapitre 33** (`Originaux/Ch 33.pdf`).
 
 Consultez le tableau détaillé dans [`CONVENTIONS_TRANSCRIPTION.md`](./CONVENTIONS_TRANSCRIPTION.md#5-état-davancement-de-la-transcription).
 
