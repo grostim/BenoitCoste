@@ -35,9 +35,9 @@ Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans 
 
 ## 📊 État d'avancement de la transcription
 
-- **Chapitres transcrits** : **25 / 38** (du Chapitre 1 au Chapitre 25 inclus).
-- **Dernier chapitre ajouté** : **Chapitre 25** (*Souvenirs de l'établissement de l'œuvre de la Propagation de la Foi (1822)*).
-- **Prochain chapitre** : **Chapitre 26** (`Originaux/Ch 26.pdf`).
+- **Chapitres transcrits** : **26 / 38** (du Chapitre 1 au Chapitre 26 inclus).
+- **Dernier chapitre ajouté** : **Chapitre 26** (*Souvenirs de la naissance de mes garçons, de la première messe de mon beau-frère et de la mort de ma mère (1822--1826)*).
+- **Prochain chapitre** : **Chapitre 27** (`Originaux/Ch 27.pdf`).
 
 Consultez le tableau détaillé dans [`CONVENTIONS_TRANSCRIPTION.md`](./CONVENTIONS_TRANSCRIPTION.md#5-état-davancement-de-la-transcription).
 
