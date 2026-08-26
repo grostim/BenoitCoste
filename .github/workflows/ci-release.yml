@@ -30,6 +30,8 @@ jobs:
             texlive-latex-extra \
             texlive-lang-french \
             texlive-fonts-recommended \
+            lmodern \
+            cm-super \
             pandoc
 
       - name: Compilation LaTeX en PDF

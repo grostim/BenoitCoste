@@ -39,6 +39,7 @@ Le document utilise la classe `report` avec les packages suivants :
 \documentclass[11pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[french]{babel}
 \usepackage{amsmath}
 \usepackage{geometry}
