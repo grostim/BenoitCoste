@@ -29,7 +29,17 @@ Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans 
 - **L'exil et le retour** : séjours en Suisse (Constance, Noefels), la situation religieuse en France.
 - **Le Concordat et le rétablissement du culte** : réouverture des églises (St Jean, St Pierre, Fourvière), visite du Pape Pie VII à Lyon.
 - **L'Empire et les Cent-Jours** : persécutions napoléoniennes, arrestation et captivité de l'auteur en 1815.
-- **La Restauration et la vie militaire / civique** : événements politiques et familiaux jusqu'au milieu du XIXᵉ siècle.
+- **La Restauration et la vie militaire / civique** : événements politiques et civiques, rétablissement des confréries et processions, souvenirs jusqu'au milieu du XIXᵉ siècle.
+
+---
+
+## 📊 État d'avancement de la transcription
+
+- **Chapitres transcrits** : **21 / 38** (du Chapitre 1 au Chapitre 21 inclus).
+- **Dernier chapitre ajouté** : **Chapitre 21** (*Souvenirs d'une procession à Fourvière, de l'érection de la croix de la place St Pierre et du rétablissement de la confrérie des Martyrs*).
+- **Prochain chapitre** : **Chapitre 22** (*Souvenirs de ma vie militaire*).
+
+Consultez le tableau détaillé dans [`CONVENTIONS_TRANSCRIPTION.md`](./CONVENTIONS_TRANSCRIPTION.md#5-état-davancement-de-la-transcription).
 
 ---
 
