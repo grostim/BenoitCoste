@@ -1,0 +1,146 @@
+name: Validation LaTeX & Publication des Releases
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Compilation LaTeX et Génération des Formats (PDF, EPUB, Markdown)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Installation des dépendances (TeX Live & Pandoc)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-lang-french \
+            texlive-fonts-recommended \
+            pandoc
+
+      - name: Compilation LaTeX en PDF
+        run: |
+          # Double passe pdflatex pour la table des matières
+          pdflatex -interaction=nonstopmode "Memoires de Benoit Coste.tex"
+          pdflatex -interaction=nonstopmode "Memoires de Benoit Coste.tex"
+          # Renommage de l'artefact PDF sans espaces
+          cp "Memoires de Benoit Coste.pdf" "Memoires_de_Benoit_Coste.pdf"
+
+      - name: Génération du format Markdown via Pandoc
+        run: |
+          pandoc "Memoires de Benoit Coste.tex" \
+            -f latex -t gfm \
+            --wrap=none \
+            -o "Memoires_de_Benoit_Coste.md"
+
+      - name: Génération du format EPUB via Pandoc
+        run: |
+          pandoc "Memoires de Benoit Coste.tex" \
+            -f latex -t epub3 \
+            --toc --toc-depth=2 \
+            --metadata title="Mémoires de Benoît Coste" \
+            --metadata author="Benoît Coste" \
+            --metadata language="fr" \
+            -o "Memoires_de_Benoit_Coste.epub"
+
+      - name: Sauvegarde des artefacts de compilation
+        uses: actions/upload-artifact@v4
+        with:
+          name: memoires-documents
+          path: |
+            Memoires_de_Benoit_Coste.pdf
+            Memoires_de_Benoit_Coste.epub
+            Memoires_de_Benoit_Coste.md
+
+  release:
+    name: Création automatique de la Release GitHub
+    needs: build
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Téléchargement des artefacts
+        uses: actions/download-artifact@v4
+        with:
+          name: memoires-documents
+          path: ./dist
+
+      - name: Calcul du numéro de version & Type de release
+        id: versioning
+        run: |
+          # Récupération du dernier tag ou valeur par défaut
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v20.0.0")
+          RAW_VERSION="${LATEST_TAG#v}"
+          
+          MAJOR=$(echo "$RAW_VERSION" | cut -d. -f1)
+          MINOR=$(echo "$RAW_VERSION" | cut -d. -f2)
+          PATCH=$(echo "$RAW_VERSION" | cut -d. -f3)
+          
+          MAJOR=${MAJOR:-20}
+          MINOR=${MINOR:-0}
+          PATCH=${PATCH:-0}
+          
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Dernier message de commit : $COMMIT_MSG"
+          
+          # Détection du type de release selon la convention
+          if echo "$COMMIT_MSG" | grep -qiE "^feat|chapitre"; then
+            NEW_MAJOR=$((MAJOR + 1))
+            NEW_TAG="v${NEW_MAJOR}.0.0"
+            REL_TYPE="Release Majeure (Nouveau chapitre)"
+          elif echo "$COMMIT_MSG" | grep -qiE "^(fix|style|refactor|docs|correction)"; then
+            NEW_MINOR=$((MINOR + 1))
+            NEW_TAG="v${MAJOR}.${NEW_MINOR}.0"
+            REL_TYPE="Release Mineure (Corrections / Ajustements)"
+          else
+            NEW_PATCH=$((PATCH + 1))
+            NEW_TAG="v${MAJOR}.${MINOR}.${NEW_PATCH}"
+            REL_TYPE="Release de Maintenance"
+          fi
+          
+          echo "Nouveau tag : $NEW_TAG ($REL_TYPE)"
+          echo "tag=$NEW_TAG" >> "$GITHUB_OUTPUT"
+          echo "rel_type=$REL_TYPE" >> "$GITHUB_OUTPUT"
+          echo "commit_msg=$COMMIT_MSG" >> "$GITHUB_OUTPUT"
+
+      - name: Publication de la Release GitHub avec les 3 formats
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.versioning.outputs.tag }}
+          name: ${{ steps.versioning.outputs.tag }} - ${{ steps.versioning.outputs.rel_type }}
+          body: |
+            ## ${{ steps.versioning.outputs.rel_type }}
+            
+            **Détail du commit :**
+            > ${{ steps.versioning.outputs.commit_msg }}
+            
+            ---
+            ### 📥 Téléchargement direct des documents :
+            - 📕 **[Version PDF (Mise en page LaTeX)](https://github.com/${{ github.repository }}/releases/download/${{ steps.versioning.outputs.tag }}/Memoires_de_Benoit_Coste.pdf)**
+            - 📱 **[Version EPUB (Liseuses / E-readers)](https://github.com/${{ github.repository }}/releases/download/${{ steps.versioning.outputs.tag }}/Memoires_de_Benoit_Coste.epub)**
+            - 📄 **[Version Markdown](https://github.com/${{ github.repository }}/releases/download/${{ steps.versioning.outputs.tag }}/Memoires_de_Benoit_Coste.md)**
+          files: |
+            ./dist/Memoires_de_Benoit_Coste.pdf
+            ./dist/Memoires_de_Benoit_Coste.epub
+            ./dist/Memoires_de_Benoit_Coste.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
