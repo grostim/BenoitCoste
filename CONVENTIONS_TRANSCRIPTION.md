@@ -190,4 +190,5 @@ Le document utilise la classe `report` avec les packages suivants :
 | **Ch 33** | `Originaux/Ch 33.pdf` | Souvenirs de la première communion de François, de la naissance et de la mort de Joséphine et autres souvenirs de famille (1833) | Transcrit |
 | **Ch 34** | `Originaux/Ch 34.pdf` | Souvenirs des journées d'avril (1834) | Transcrit |
 | **Ch 35** | `Originaux/Ch 35.pdf` | Souvenirs de nos voyages de famille, de la mort de ma sœur Franchet, du mariage de Marie, etc. (1835--1839) | Transcrit |
-| **Ch 36--38** | `Originaux/Ch 36.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
+| **Ch 36** | `Originaux/Ch 36.pdf` | Tristes souvenirs de 1840 | Transcrit |
+| **Ch 37--38** | `Originaux/Ch 37.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
