@@ -51,7 +51,7 @@ Le document utilise la classe `report` avec les packages suivants :
 
 ### 2.2 Titre et métadonnées
 ```latex
-\title{\Huge \textbf{Mémoires de Benoît Coste}}
+\title{\Huge \textbf{Mes souvenirs de soixante ans}}
 \author{\textbf{Benoît Coste} \\ 
 \small Fils d'Isaac Coste et de Jeanne Jordan (1756--1853) \\
 \small Père de : Marie (épouse de François Félix Berloty), Blandine (religieuse), François}
