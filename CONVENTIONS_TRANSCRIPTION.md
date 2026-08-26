@@ -185,4 +185,5 @@ Le document utilise la classe `report` avec les packages suivants :
 | **Ch 28** | `Originaux/Ch 28.pdf` | Souvenirs de la mort de Pierre, de la première communion de mes filles et de quelques événements de famille (1826--1829) | Transcrit |
 | **Ch 29** | `Originaux/Ch 29.pdf` | Souvenirs de la Révolution de Juillet (1830) | Transcrit |
 | **Ch 30** | `Originaux/Ch 30.pdf` | Souvenirs de la mort de mon beau-père, de celle de ma belle-mère et de la procession de La Guillotière (1831) | Transcrit |
-| **Ch 31--38** | `Originaux/Ch 31.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
+| **Ch 31** | `Originaux/Ch 31.pdf` | Souvenirs des journées de novembre (1831) | Transcrit |
+| **Ch 32--38** | `Originaux/Ch 32.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |

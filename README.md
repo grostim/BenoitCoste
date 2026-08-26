@@ -35,9 +35,9 @@ Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans 
 
 ## 📊 État d'avancement de la transcription
 
-- **Chapitres transcrits** : **30 / 38** (du Chapitre 1 au Chapitre 30 inclus).
-- **Dernier chapitre ajouté** : **Chapitre 30** (*Souvenirs de la mort de mon beau-père, de celle de ma belle-mère et de la procession de La Guillotière (1831)*).
-- **Prochain chapitre** : **Chapitre 31** (`Originaux/Ch 31.pdf`).
+- **Chapitres transcrits** : **31 / 38** (du Chapitre 1 au Chapitre 31 inclus).
+- **Dernier chapitre ajouté** : **Chapitre 31** (*Souvenirs des journées de novembre (1831)*).
+- **Prochain chapitre** : **Chapitre 32** (`Originaux/Ch 32.pdf`).
 
 Consultez le tableau détaillé dans [`CONVENTIONS_TRANSCRIPTION.md`](./CONVENTIONS_TRANSCRIPTION.md#5-état-davancement-de-la-transcription).
 
