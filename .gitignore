@@ -1,0 +1,42 @@
+# Fichiers auxiliaires LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.log
+*.nav
+*.nlo
+*.nls
+*.out
+*.pdfpc
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# Fichiers de sortie compilés (conserver les originaux)
+/Memoires de Benoit Coste.pdf
+*.synctex(busy)
+
+# Scripts temporaires et images de travail
+scratch*
+*.tmp
+
+# Fichiers système et éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
