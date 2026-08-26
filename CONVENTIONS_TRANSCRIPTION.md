@@ -166,5 +166,5 @@ Le document utilise la classe `report` avec les packages suivants :
 | **Ch 20** | `Originaux/Ch 20.pdf` | Souvenirs des Cent Jours et de ma captivité | Transcrit |
 | **Ch 21** | `Originaux/Ch 21.pdf` | Souvenirs d'une procession à Fourvière, de l'érection de la croix de la place St Pierre et du rétablissement de la confrérie des Martyrs | Transcrit |
 | **Ch 22** | `Originaux/Ch 22.pdf` | Souvenirs de ma vie militaire (Campagne de la Côte Saint-André) | Transcrit |
-| **Ch 23** | `Originaux/Ch 23.pdf` | Mes souvenirs de soixante ans | À transcrire |
+| **Ch 23** | `Originaux/Ch 23.pdf` | Souvenirs de famille et de l'administration des prisons (1817) | Transcrit |
 | **Ch 24--38** | `Originaux/Ch 24.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
