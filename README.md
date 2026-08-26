@@ -3,7 +3,7 @@
 [![Validation LaTeX & Publication](https://github.com/grostim/BenoitCoste/actions/workflows/ci-release.yml/badge.svg)](https://github.com/grostim/BenoitCoste/actions/workflows/ci-release.yml)
 [![Dernière version](https://img.shields.io/github/v/release/grostim/BenoitCoste?label=Version&color=blue)](https://github.com/grostim/BenoitCoste/releases/latest)
 
-Projet de transcription intégrale, d'édition critique et de mise en page sous **LaTeX** de l'ouvrage *«~Mes souvenirs de soixante ans~»*, mémoires manuscrites et dactylographiées de **Benoît Coste** (1781–1845), négociant et notable lyonnais, témoin privilégié de la Révolution française, du Siège de Lyon (1793), du Concordat, de l'Empire et de la Restauration.
+Projet de transcription intégrale, d'édition critique et de mise en page sous **LaTeX** de l'ouvrage <u>« Mes souvenirs de soixante ans »</u>, mémoires manuscrites et dactylographiées de **Benoît Coste** (1781–1845), négociant et notable lyonnais, témoin privilégié de la Révolution française, du Siège de Lyon (1793), du Concordat, de l'Empire et de la Restauration.
 
 ---
 
