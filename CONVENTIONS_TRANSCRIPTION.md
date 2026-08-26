@@ -101,6 +101,17 @@ Le document utilise la classe `report` avec les packages suivants :
 - **Règle absolue :** La transcription doit intégrer le texte final corrigé par la main de l'auteur ou du correcteur historique.
 - L'analyse des scans est effectuée par lecture visuelle directe (Vision multimodal) pour distinguer finement les ajouts manuscrits des coquilles de machine à écrire.
 
+### 3.7 Citations latines et notes du transcripteur
+- Pour chaque citation ou passage en latin dans le texte, une note de bas de page (`\footnote{...}`) est systématiquement ajoutée.
+- La note doit impérativement préciser :
+  1. La source scripturaire, patristique ou liturgique exacte (Psaume, Évangile, Épître, hymne liturgique, etc.).
+  2. La traduction fidèle en français.
+  3. La mention explicite `(Note du transcripteur)` pour la distinguer clairement des notes de l'auteur.
+  Exemple :
+  ```latex
+  \textit{Non nobis Domine, non nobis, sed nomini tuo da gloriam}\footnote{Psaume 113b (115), 1 : « Non pas à nous, Seigneur, non pas à nous, mais à ton nom donne la gloire » (Note du transcripteur).}
+  ```
+
 ---
 
 ## 4. Règles Typographiques et Orthotypographiques
