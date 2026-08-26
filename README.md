@@ -35,9 +35,9 @@ Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans 
 
 ## 📊 État d'avancement de la transcription
 
-- **Chapitres transcrits** : **21 / 38** (du Chapitre 1 au Chapitre 21 inclus).
-- **Dernier chapitre ajouté** : **Chapitre 21** (*Souvenirs d'une procession à Fourvière, de l'érection de la croix de la place St Pierre et du rétablissement de la confrérie des Martyrs*).
-- **Prochain chapitre** : **Chapitre 22** (*Souvenirs de ma vie militaire*).
+- **Chapitres transcrits** : **22 / 38** (du Chapitre 1 au Chapitre 22 inclus, marquant également la fin de la **Troisième Époque**).
+- **Dernier chapitre ajouté** : **Chapitre 22** (*Souvenirs de ma vie militaire (Campagne de la Côte Saint-André)*).
+- **Prochain chapitre** : **Chapitre 23** (*Mes souvenirs de soixante ans*).
 
 Consultez le tableau détaillé dans [`CONVENTIONS_TRANSCRIPTION.md`](./CONVENTIONS_TRANSCRIPTION.md#5-état-davancement-de-la-transcription).
 
