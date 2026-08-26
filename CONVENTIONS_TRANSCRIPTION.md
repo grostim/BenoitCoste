@@ -182,4 +182,5 @@ Le document utilise la classe `report` avec les packages suivants :
 | **Ch 25** | `Originaux/Ch 25.pdf` | Souvenirs de l'établissement de l'œuvre de la Propagation de la Foi (1822) | Transcrit |
 | **Ch 26** | `Originaux/Ch 26.pdf` | Souvenirs de la naissance de mes garçons, de la première messe de mon beau-frère et de la mort de ma mère (1822--1826) | Transcrit |
 | **Ch 27** | `Originaux/Ch 27.pdf` | Souvenirs du Jubilé (1826) | Transcrit |
-| **Ch 28--38** | `Originaux/Ch 28.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
+| **Ch 28** | `Originaux/Ch 28.pdf` | Souvenirs de la mort de Pierre, de la première communion de mes filles et de quelques événements de famille (1826--1829) | Transcrit |
+| **Ch 29--38** | `Originaux/Ch 29.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |

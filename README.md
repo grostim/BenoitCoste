@@ -35,9 +35,9 @@ Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans 
 
 ## 📊 État d'avancement de la transcription
 
-- **Chapitres transcrits** : **27 / 38** (du Chapitre 1 au Chapitre 27 inclus).
-- **Dernier chapitre ajouté** : **Chapitre 27** (*Souvenirs du Jubilé (1826)*).
-- **Prochain chapitre** : **Chapitre 28** (`Originaux/Ch 28.pdf`).
+- **Chapitres transcrits** : **28 / 38** (du Chapitre 1 au Chapitre 28 inclus).
+- **Dernier chapitre ajouté** : **Chapitre 28** (*Souvenirs de la mort de Pierre, de la première communion de mes filles et de quelques événements de famille (1826--1829)*).
+- **Prochain chapitre** : **Chapitre 29** (`Originaux/Ch 29.pdf`).
 
 Consultez le tableau détaillé dans [`CONVENTIONS_TRANSCRIPTION.md`](./CONVENTIONS_TRANSCRIPTION.md#5-état-davancement-de-la-transcription).
 
