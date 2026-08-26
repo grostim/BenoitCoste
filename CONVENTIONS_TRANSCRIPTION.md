@@ -168,4 +168,5 @@ Le document utilise la classe `report` avec les packages suivants :
 | **Ch 22** | `Originaux/Ch 22.pdf` | Souvenirs de ma vie militaire (Campagne de la Côte Saint-André) | Transcrit |
 | **Ch 23** | `Originaux/Ch 23.pdf` | Souvenirs de famille et de l'administration des prisons (1817) | Transcrit |
 | **Ch 24** | `Originaux/Ch 24.pdf` | Souvenirs de la naissance du duc de Bordeaux, de celle de mes filles et du voyage de Bellevaux (1818--1821) | Transcrit |
-| **Ch 25--38** | `Originaux/Ch 25.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
+| **Ch 25** | `Originaux/Ch 25.pdf` | Souvenirs de l'établissement de l'œuvre de la Propagation de la Foi (1822) | Transcrit |
+| **Ch 26--38** | `Originaux/Ch 26.pdf` à `Ch 38.pdf` | Chapitres suivants | À transcrire |
