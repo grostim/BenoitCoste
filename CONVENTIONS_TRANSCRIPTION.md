@@ -88,9 +88,11 @@ Le document utilise la classe `report` avec les packages suivants :
 - Si la note originale précise une mention d'auteur, la reproduire fidèlement : `(Note de l'auteur)` ou `(NOTE DE L'AUTEUR)`.
 
 ### 3.5 Interventions et résumés éditoriaux
-- Les passages résumés ou les ajouts contextuels introduits par le transcripteur sont placés en italique et entre parenthèses :
+- Les passages résumés ou les ajouts contextuels introduits par le premier transcripteur historique du tapuscrit sont mis en évidence par un décalage de marge (environnement `quote`), en italique et entre parenthèses :
   ```latex
+  \begin{quote}
   \textit{(Après le départ de M. Satin, Benoît Coste est confié à un Sulpicien, M. Molin...)}
+  \end{quote}
   ```
 - Les coupures ou omissions sont signalées par `(...)` ou `...... (...)`.
 
