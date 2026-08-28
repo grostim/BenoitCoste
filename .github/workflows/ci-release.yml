@@ -123,10 +123,14 @@ jobs:
           echo "Nouveau tag : $NEW_TAG ($REL_TYPE)"
           echo "tag=$NEW_TAG" >> "$GITHUB_OUTPUT"
           echo "rel_type=$REL_TYPE" >> "$GITHUB_OUTPUT"
+          DELIMITER="ghadelimiter_$(date +%s%N)_${RANDOM}"
+          while grep -Fqx "$DELIMITER" <<< "$COMMIT_MSG"; do
+            DELIMITER="${DELIMITER}_x"
+          done
           {
-            echo "commit_msg<<EOF"
+            echo "commit_msg<<$DELIMITER"
             echo "$COMMIT_MSG"
-            echo "EOF"
+            echo "$DELIMITER"
           } >> "$GITHUB_OUTPUT"
 
       - name: Publication de la Release GitHub avec les 3 formats
