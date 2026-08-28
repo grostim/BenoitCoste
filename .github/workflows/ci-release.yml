@@ -28,8 +28,9 @@ jobs:
       - name: Calcul du numéro de version & Type de release
         id: versioning
         run: |
-          # Récupération du dernier tag ou valeur par défaut
-          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v20.0.0")
+          # Récupération du plus grand tag ou valeur par défaut
+          LATEST_TAG=$(git tag --list 'v*' | sort -V | tail -n 1)
+          LATEST_TAG=${LATEST_TAG:-v20.0.0}
           RAW_VERSION="${LATEST_TAG#v}"
 
           MAJOR=$(echo "$RAW_VERSION" | cut -d. -f1)
@@ -71,6 +72,24 @@ jobs:
             echo "$DELIMITER"
           } >> "$GITHUB_OUTPUT"
 
+      - name: Préparation des sources avec le numéro de release
+        env:
+          RELEASE_VERSION: ${{ steps.versioning.outputs.tag }}
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import os
+
+          source = Path("Memoires de Benoit Coste.tex").read_text()
+          default = r"\providecommand{\releaseversion}{Version de développement}"
+          replacement = rf"\providecommand{{\releaseversion}}{{{os.environ['RELEASE_VERSION']}}}"
+          if source.count(default) != 1:
+              raise SystemExit("La définition de la version LaTeX est introuvable ou ambiguë")
+          Path("Memoires de Benoit Coste.release.tex").write_text(
+              source.replace(default, replacement)
+          )
+          PY
+
       - name: Installation des dépendances (TeX Live & Pandoc)
         run: |
           sudo apt-get update
@@ -85,29 +104,25 @@ jobs:
             pandoc
 
       - name: Compilation LaTeX en PDF
-        env:
-          RELEASE_VERSION: ${{ steps.versioning.outputs.tag }}
         run: |
           # Double passe pdflatex pour la table des matières
           pdflatex -interaction=nonstopmode -halt-on-error \
-            -jobname="Memoires de Benoit Coste" \
-            "\\def\\releaseversion{$RELEASE_VERSION}\\input{Memoires de Benoit Coste.tex}"
+            "Memoires de Benoit Coste.release.tex"
           pdflatex -interaction=nonstopmode -halt-on-error \
-            -jobname="Memoires de Benoit Coste" \
-            "\\def\\releaseversion{$RELEASE_VERSION}\\input{Memoires de Benoit Coste.tex}"
+            "Memoires de Benoit Coste.release.tex"
           # Renommage de l'artefact PDF sans espaces
-          cp "Memoires de Benoit Coste.pdf" "Memoires_de_Benoit_Coste.pdf"
+          cp "Memoires de Benoit Coste.release.pdf" "Memoires_de_Benoit_Coste.pdf"
 
       - name: Génération du format Markdown via Pandoc
         run: |
-          pandoc "Memoires de Benoit Coste.tex" \
+          pandoc "Memoires de Benoit Coste.release.tex" \
             -f latex -t gfm \
             --wrap=none \
             -o "Memoires_de_Benoit_Coste.md"
 
       - name: Génération du format EPUB via Pandoc
         run: |
-          pandoc "Memoires de Benoit Coste.tex" \
+          pandoc "Memoires de Benoit Coste.release.tex" \
             -f latex -t epub3 \
             --toc --toc-depth=2 \
             --metadata title="Mémoires de Benoît Coste" \
