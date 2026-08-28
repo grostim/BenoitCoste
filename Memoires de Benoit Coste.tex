@@ -21,6 +21,9 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
+% Numéro de release injecté par le workflow ; valeur locale par défaut.
+\providecommand{\releaseversion}{Version de développement}
+
 \begin{document}
 
 \begin{titlepage}
@@ -35,6 +38,9 @@
     \vspace{0.4cm}
     {\small \textit{Benoît Coste (1781--1845)}\par}
     \vfill
+    \begin{flushright}
+        {\scriptsize \textit{\releaseversion}\par}
+    \end{flushright}
 \end{titlepage}
 
 \newpage
