@@ -1,0 +1,88 @@
+name: Erreur de transcription, typographie ou orthographe
+description: Signaler une erreur repérée dans le texte transcrit.
+title: "[Correction] "
+labels:
+  - correction
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de contribuer à l'amélioration de la transcription.
+        Une issue doit concerner une correction précise et vérifiable.
+
+  - type: input
+    id: chapitre
+    attributes:
+      label: Chapitre ou section
+      description: Indiquez le chapitre, la section ou la page concernée.
+      placeholder: "Ex. Chapitre 12, section « ... »"
+    validations:
+      required: true
+
+  - type: input
+    id: emplacement
+    attributes:
+      label: Emplacement précis
+      description: Donnez un repère permettant de retrouver rapidement le passage.
+      placeholder: "Ex. paragraphe commençant par « ... » ou page 42"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type-erreur
+    attributes:
+      label: Type d'erreur
+      options:
+        - Orthographe
+        - Typographie
+        - Erreur de transcription
+        - Ponctuation
+        - Autre
+    validations:
+      required: true
+
+  - type: textarea
+    id: texte-actuel
+    attributes:
+      label: Texte actuel
+      description: Copiez le texte tel qu'il apparaît actuellement dans la transcription.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: correction-proposee
+    attributes:
+      label: Correction proposée
+      description: Indiquez la formulation qui vous semble correcte.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification ou source
+      description: Expliquez la correction et, si possible, indiquez le passage de l'original ou une source permettant de la vérifier.
+      placeholder: "Ex. lecture de l'original, règle typographique, comparaison avec une autre occurrence..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexte
+    attributes:
+      label: Informations complémentaires
+      description: Ajoutez toute précision utile, notamment une image ou un lien vers le passage concerné.
+      placeholder: "Vous pouvez glisser-déposer une image ici."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Vérification
+      options:
+        - label: J'ai vérifié que cette correction n'est pas déjà signalée dans une autre issue.
+          required: true
+        - label: J'ai indiqué le texte actuel et la correction proposée.
+          required: true
