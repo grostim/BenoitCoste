@@ -1,0 +1,62 @@
+{
+  "report": {
+    "version": "fixture-1.2.4-highlight",
+    "options_help": {
+      "highlight_tag": ["", "", "A tag name"],
+      "ancestor_generations": ["", "", "A number"],
+      "descendant_generations": ["", "", "A number"],
+      "privacy_mode": ["", "", ["publication_safe"]]
+    }
+  },
+  "fan_svg_path": "tests/fixtures/fan.svg",
+  "center_handle": "person-center",
+  "tag_handle": "tag-cited",
+  "graph": {
+    "people": [
+      {
+        "handle": "person-center",
+        "gramps_id": "I-CENTER",
+        "name": "Benoît Coste",
+        "tag_list": []
+      },
+      {
+        "handle": "person-cited",
+        "gramps_id": "I-CITED",
+        "name": "Josephine Colomb",
+        "tag_list": ["tag-cited"]
+      },
+      {
+        "handle": "person-private",
+        "gramps_id": "I-PRIVATE",
+        "name": "Should never be shown",
+        "visible": false,
+        "masked": true,
+        "tag_list": []
+      },
+      {
+        "handle": "person-unrelated",
+        "gramps_id": "I-UNRELATED",
+        "name": "Unrelated Cited Person",
+        "tag_list": ["tag-cited"]
+      }
+    ],
+    "families": [
+      {
+        "handle": "family-path",
+        "father_handle": "person-center",
+        "mother_handle": "person-private",
+        "child_ref_list": []
+      },
+      {
+        "handle": "family-path-2",
+        "father_handle": "person-private",
+        "child_ref_list": [{"ref": "person-cited"}]
+      },
+      {
+        "handle": "family-unrelated",
+        "father_handle": "person-unrelated",
+        "child_ref_list": []
+      }
+    ]
+  }
+}

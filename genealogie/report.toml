@@ -1,0 +1,42 @@
+# Configuration publique de régénération.
+# Les identifiants Gramps sont des références de données, pas des credentials.
+
+[gramps]
+report_id = "two_way_fan_chart"
+center_family = "F0043"
+source_gramps_id = "S2212"
+highlight_tag = "Cité dans les Mémoires de Benoît Coste"
+
+[fan_chart]
+ancestor_generations = 2
+descendant_generations = 1
+show_portraits = true
+portrait_source = "first_image"
+privacy_mode = "publication_safe"
+include_private = false
+orientation = "landscape"
+paper_size = "A0"
+output_format = "svg"
+
+[kinship_graph]
+center_gramps_id = "I0095"
+include_only_tagged = true
+privacy_mode = "publication_safe"
+
+[outputs]
+directory = "genealogie/assets"
+canonical_fan_stem = "arbre-benoit-coste"
+kinship_stem = "parente-citee"
+
+[validation]
+expected_labels = ["Coste", "Colomb"]
+minimum_text_elements = 2
+minimum_path_elements = 1
+minimum_image_elements = 0
+# Les détails conservent les dates compactes du rapport Gramps (minimum
+# physique observé ≈ 2,76 pt). L'overview est une vue de navigation et n'est
+# pas soumise à ce seuil ; les détails sont contrôlés séparément par le pipeline.
+minimum_a4_font_pt = 2.7
+poll_seconds = 3
+poll_attempts = 40
+api_timeout_seconds = 60

@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -101,7 +101,21 @@ jobs:
             texlive-fonts-recommended \
             lmodern \
             cm-super \
-            pandoc
+            pandoc \
+            graphviz \
+            librsvg2-bin
+
+      - name: Vérification offline du pipeline généalogique
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 python3 scripts/update_genealogy.py \
+            --config genealogie/report.toml \
+            --fixture tests/fixtures/genealogy_fixture.json \
+            --dry-run
+
+      - name: Tests unitaires offline
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
+            -s tests -p 'test*.py' -v
 
       - name: Compilation LaTeX en PDF
         run: |
@@ -145,6 +159,8 @@ jobs:
     needs: build
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Récupération du dépôt

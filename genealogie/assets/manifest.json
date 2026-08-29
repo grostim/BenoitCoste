@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "report": "two_way_fan_chart",
+  "report_version": "1.2.7",
+  "center_family": "F0043",
+  "tag_name": "Cité dans les Mémoires de Benoît Coste",
+  "source_reference": "S2212",
+  "ancestor_generations": 2,
+  "descendant_generations": 1,
+  "privacy_mode": "publication_safe",
+  "show_portraits": true,
+  "canonical": "arbre-benoit-coste.svg",
+  "files": {
+    "arbre-benoit-coste-a4-1.pdf": "fb05c8c9c12e8b3ea3e3c0f6a9bd79cb0187ca840372acbe0882d2e45d594b67",
+    "arbre-benoit-coste-a4-1.png": "d2f0758036e6c66bd57d56ea75126880234fe9bdf8492544d8431bb6b9030de9",
+    "arbre-benoit-coste-a4-1.svg": "2b71d72c21edc86b89019598c7168ad0704b1135df94a68d6631daab8336aa22",
+    "arbre-benoit-coste-a4-2.pdf": "1391900596668a6e102037301eb66b54a8a96d69dccf3debccce07acbaad2eed",
+    "arbre-benoit-coste-a4-2.png": "d30d44f41897a43d81fb242c90615c2d5351caaba2ed35fc75b22b23fb4f4f8b",
+    "arbre-benoit-coste-a4-2.svg": "eb8a2691a56952b43d4c287a409e147cd3fcfc8d8893dde3b5d1b691c014d995",
+    "arbre-benoit-coste-a4-3.pdf": "a59499561239471a017968d6ea241fc6581bd543c0c1132fd74e030e50c55c05",
+    "arbre-benoit-coste-a4-3.png": "e87f6ccf1ca2c95cc8630c40f4f4fa301aa8d06d4ae01f4b32129d7532c39714",
+    "arbre-benoit-coste-a4-3.svg": "4bc5c344718416ecc02b6e10d0a827c7e139c98d9bd95b723a755eded1915a84",
+    "arbre-benoit-coste-a4-4.pdf": "cca8138ec69b3ac6908c35ce262dc2d4d514a044bdbbad74b802ec51c8153ce8",
+    "arbre-benoit-coste-a4-4.png": "8b362d71083e89471abee60a91ded9bf507dfcfeada321f8a22759dd81dc8b9d",
+    "arbre-benoit-coste-a4-4.svg": "3698069da7ce33f55c55d5004736f2693af0f701dff7feeb7dc5aff7e130eb31",
+    "arbre-benoit-coste-a4-overview.pdf": "c6526c819537557477efad6eee4e7cbd6ac73d442e4627c93e36586090c1a615",
+    "arbre-benoit-coste-a4-overview.png": "2a79dec147eea188ffbb60d197eb40670fe3223630b372fb322a8177b3cdf768",
+    "arbre-benoit-coste-a4-overview.svg": "2ec93e7cad051355ac202e9978c486cb30138165b522ecae7faa6c455e55d42b",
+    "arbre-benoit-coste.pdf": "3b53fdbfd011d9965c208b06d8d9d9438b029669ab1056b6e387aa6e6358753d",
+    "arbre-benoit-coste.png": "c85427e2e23751cb111bb34251ad287f1010bfab6217972fe54989e52989fd0f",
+    "arbre-benoit-coste.svg": "65184ace2b300cd6d522fbb5d3f7452ebb9cd94383ce4f71b5398492f7d5d4af",
+    "parente-citee.pdf": "52ce3537cdec36770062bfb91dba0dedac0a9dc6553c00de4b19f8048c9c24bf",
+    "parente-citee.png": "d4773fe440decf179bbfd18808563768ca2e86cf5cacb11e0b58badcbb515438",
+    "parente-citee.svg": "967fb50d7e197e157c154353fa3c01987731208d2707ac55aca5203e03d8305d"
+  },
+  "collateral_graph": {
+    "selected_people": 30,
+    "selected_unions": 10,
+    "connected_cited_people": 30,
+    "unconnected_cited_people": 3,
+    "tag_signal": "double-circle + terracotta/bordeaux contour"
+  },
+  "notes": [
+    "SVG canonique; PDF et PNG dérivent de la même source SVG.",
+    "Les handles Gramps, jetons et données brutes ne sont pas publiés."
+  ]
+}

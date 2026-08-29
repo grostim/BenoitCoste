@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000mm" height="700mm" viewBox="0 0 1000 700">
+  <rect width="1000" height="700" fill="#FAF9F5"/>
+  <path d="M500 350 A300 300 0 0 1 800 350" fill="none" stroke="#9B9992" stroke-width="3"/>
+  <path d="M500 350 A240 240 0 0 0 260 350" fill="none" stroke="#9B9992" stroke-width="3"/>
+  <path d="M500 350 A180 180 0 0 1 680 350" fill="none" stroke="#B55A52" stroke-width="4"/>
+  <path d="M500 350 A120 120 0 0 0 380 350" fill="none" stroke="#7C2F3A" stroke-width="4"/>
+  <path d="M500 280 L500 60 M500 420 L500 640 M430 350 L210 350 M570 350 L790 350" fill="none" stroke="#D6D1C8" stroke-width="2"/>
+  <circle cx="500" cy="350" r="70" fill="#F4E7E5" stroke="#7C2F3A" stroke-width="5"/>
+  <image x="460" y="282" width="80" height="28" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP48vzpfwAJUwPA3kvqAwAAAABJRU5ErkJggg=="/>
+  <polygon points="760,110 772,122 760,134 748,122" fill="#B55A52" stroke="#7C2F3A" stroke-width="4"/>
+  <text x="500" y="340" text-anchor="middle" font-size="24pt" fill="#242321">Benoît Coste</text>
+  <text x="500" y="375" text-anchor="middle" font-size="16pt" fill="#242321">Antoinette Joséphine Colomb de Gast</text>
+  <text x="500" y="80" text-anchor="middle" font-size="13pt" fill="#242321">Coste — ascendances</text>
+  <text x="500" y="620" text-anchor="middle" font-size="13pt" fill="#242321">Colomb — descendance</text>
+  <text x="240" y="330" text-anchor="middle" font-size="12pt" fill="#242321">Coste</text>
+  <text x="760" y="330" text-anchor="middle" font-size="12pt" fill="#242321">Colomb</text>
+</svg>
