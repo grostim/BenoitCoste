@@ -83,11 +83,14 @@ def _option_names(report: Any) -> set[str]:
 
 def ensure_addon_capability(report: dict[str, Any], *, allow_missing: bool = False) -> set[str]:
     names = _option_names(report)
-    if "highlight_tag" not in names and not allow_missing:
+    required = {"highlight_tag", "show_highlight_markers"}
+    missing = sorted(required - names)
+    if missing and not allow_missing:
         version = report.get("version", "unknown")
         raise AddonCapabilityError(
-            "installed Two-Way Fan Chart addon does not expose highlight_tag "
-            f"(report version {version}); install the citation-highlights branch "
+            "installed Two-Way Fan Chart addon does not expose required options "
+            f"{', '.join(missing)} (report version {version}); install the "
+            "publication-safe addon branch "
             "before generating public assets"
         )
     return names
@@ -111,6 +114,9 @@ def report_options(config: dict[str, Any]) -> dict[str, Any]:
         "off": "svg",
         "preset": "custom",
         "highlight_tag": str(gramps["highlight_tag"]),
+        "show_highlight_markers": (
+            "True" if _as_bool(report.get("show_highlight_markers", False)) else "False"
+        ),
         "respect_media_crop": "True",
     }
 
@@ -917,6 +923,9 @@ def _safe_manifest(
         "descendant_generations": int(config["fan_chart"]["descendant_generations"]),
         "privacy_mode": config["fan_chart"]["privacy_mode"],
         "show_portraits": _as_bool(config["fan_chart"]["show_portraits"]),
+        "show_highlight_markers": _as_bool(
+            config["fan_chart"].get("show_highlight_markers", False)
+        ),
         "canonical": canonical_name,
         "files": checksums,
         "collateral_graph": graph_stats,
@@ -928,7 +937,13 @@ def _safe_manifest(
 
 
 def _fixture_report_info(fixture: dict[str, Any]) -> dict[str, Any]:
-    return fixture.get("report") or {"version": "fixture", "options_help": {"highlight_tag": []}}
+    return fixture.get("report") or {
+        "version": "fixture",
+        "options_help": {
+            "highlight_tag": [],
+            "show_highlight_markers": [],
+        },
+    }
 
 
 def build_assets(

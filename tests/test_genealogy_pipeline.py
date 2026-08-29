@@ -41,14 +41,35 @@ class GenealogyPipelineTests(unittest.TestCase):
         self.assertEqual(options["respect_media_crop"], "True")
         self.assertEqual(options["off"], "svg")
         self.assertEqual(options["highlight_tag"], "Cité dans les Mémoires de Benoît Coste")
+        self.assertEqual(options["show_highlight_markers"], "False")
         config_text = (ROOT / "genealogie" / "report.toml").read_text(encoding="utf-8")
         self.assertNotIn("GRAMPSWEB_API_PASS", config_text)
         self.assertNotIn("Bearer ", config_text)
 
+    def test_chapter_keeps_only_the_overview_and_kinship_figure(self) -> None:
+        chapter = (ROOT / "genealogie" / "chapitre.tex").read_text(encoding="utf-8")
+        self.assertIn("arbre-benoit-coste-a4-overview.pdf", chapter)
+        self.assertIn("parente-citee.pdf", chapter)
+        for index in range(1, 5):
+            self.assertNotIn(f"arbre-benoit-coste-a4-{index}.pdf", chapter)
+
     def test_old_addon_is_rejected_without_override(self) -> None:
         with self.assertRaises(AddonCapabilityError):
             ensure_addon_capability({"version": "1.2.4", "options_help": {"ancestor_generations": []}})
-        self.assertIn("highlight_tag", ensure_addon_capability({"options_help": {"highlight_tag": []}}))
+        self.assertEqual(
+            {
+                "highlight_tag",
+                "show_highlight_markers",
+            },
+            ensure_addon_capability(
+                {
+                    "options_help": {
+                        "highlight_tag": [],
+                        "show_highlight_markers": [],
+                    }
+                }
+            ),
+        )
 
     def test_detail_views_are_vector_crops(self) -> None:
         svg = Path(ROOT / "tests" / "fixtures" / "fan.svg").read_bytes()
@@ -196,6 +217,7 @@ class GenealogyPipelineTests(unittest.TestCase):
             result = build_assets(self.config, output_dir=output, fixture=self.fixture)
             self.assertEqual(result["manifest"]["ancestor_generations"], 2)
             self.assertEqual(result["manifest"]["descendant_generations"], 1)
+            self.assertFalse(result["manifest"]["show_highlight_markers"])
             self.assertGreater(result["manifest"]["collateral_graph"]["connected_cited_people"], 0)
             expected = {
                 "arbre-benoit-coste.svg",

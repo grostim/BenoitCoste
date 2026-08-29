@@ -13,6 +13,8 @@ La régénération locale utilise le rapport Gramps `two_way_fan_chart` avec :
 - les portraits autorisés par `publication_safe` ;
 - le tag exact `Cité dans les Mémoires de Benoît Coste` pour le repérage des
   personnes citées ;
+- les marqueurs de tag désactivés dans l'éventail public ;
+- les prénoms d'usage utilisés pour les descendants visibles ;
 - un graphe relationnel séparé pour les collatéraux cités.
 
 Le tag est résolu par son nom dans Gramps. Aucun handle technique n'est codé
@@ -36,9 +38,9 @@ conversions sans écrire dans `genealogie/assets/`.
 
 ## Régénération live, uniquement en local
 
-Le rapport réel ne doit être lancé qu'avec l'addon qui expose l'option
-`highlight_tag`. Les identifiants sont lus depuis l'environnement du processus
-ou un fichier situé hors du dépôt :
+Le rapport réel ne doit être lancé qu'avec l'addon qui expose les options
+`highlight_tag` et `show_highlight_markers`. Les identifiants sont lus depuis
+l'environnement du processus ou un fichier situé hors du dépôt :
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/update_genealogy.py \
@@ -46,7 +48,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/update_genealogy.py \
   --env-file /home/sorg/CloudCLI/Homelab/.env
 ```
 
-Le pipeline s'arrête si l'addon distant ne propose pas `highlight_tag`, si le
+Le pipeline s'arrête si l'addon distant ne propose pas ces deux options, si le
 SVG contient une ressource externe ou si une information technique apparaît
 dans la projection publique. Il ne faut pas utiliser
 `--allow-missing-highlight` pour une publication.
@@ -70,8 +72,9 @@ La sortie public-safe comprend :
 - `manifest.json` : dimensions, paramètres publics et empreintes SHA-256.
 
 Le poster complet n'est pas réduit directement pour remplacer les vues de
-lecture A4 : la vue d'ensemble sert au repérage et les panneaux de détail à la
-lecture. Le graphe collatéral conserve les personnes intermédiaires nécessaires
+lecture A4 : la vue d'ensemble sert au repérage. Les panneaux de détail restent
+des artefacts vectoriels autonomes du pipeline, mais ne sont plus inclus dans
+le livre. Le graphe collatéral conserve les personnes intermédiaires nécessaires
 au lien familial, mais masque leur identité lorsqu'elles sont privées.
 
 Les PDF et PNG doivent toujours être régénérés depuis le SVG validé. Ne jamais

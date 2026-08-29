@@ -14,6 +14,7 @@ show_portraits = true
 portrait_source = "first_image"
 privacy_mode = "publication_safe"
 include_private = false
+show_highlight_markers = false
 orientation = "landscape"
 paper_size = "A0"
 output_format = "svg"

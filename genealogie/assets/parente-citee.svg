@@ -88,7 +88,7 @@
 <ellipse cx="260" cy="786" rx="210" ry="38" fill="#F4E7E5" stroke="#7C2F3A" stroke-width="1.4"/>
 <text x="260" y="791" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#242321">Pierre Coste</text>
 <ellipse cx="960" cy="786" rx="210" ry="38" fill="#F4E7E5" stroke="#7C2F3A" stroke-width="1.4"/>
-<text x="960" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#242321"><tspan x="960" y="781">Pierre François Colomb De</tspan><tspan x="960" y="800">Hauteville</tspan></text>
+<text x="960" y="791" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#242321">Pierre François Colomb De Gast</text>
 <ellipse cx="1660" cy="786" rx="210" ry="38" fill="#F4E7E5" stroke="#7C2F3A" stroke-width="1.4"/>
 <text x="1660" y="791" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#242321">Pierre-Adrien Neyrat</text>
 <ellipse cx="260" cy="902" rx="210" ry="38" fill="#F4E7E5" stroke="#7C2F3A" stroke-width="1.4"/>
