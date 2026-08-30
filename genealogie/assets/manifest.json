@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "report": "two_way_fan_chart",
+  "report_version": "1.2.9",
+  "center_family": "F0043",
+  "tag_name": "Cité dans les Mémoires de Benoît Coste",
+  "source_reference": "S2212",
+  "ancestor_generations": 2,
+  "descendant_generations": 1,
+  "privacy_mode": "publication_safe",
+  "show_portraits": true,
+  "show_highlight_markers": false,
+  "canonical": "arbre-benoit-coste.svg",
+  "files": {
+    "arbre-benoit-coste-a4-1.pdf": "f257af14031b09bea9b6f106fe94c54b293cfa859f903f8772e9679caed0617b",
+    "arbre-benoit-coste-a4-1.png": "34758c1852880494e6ce608082de88c93a582d9c81d81bcdd8ae03bcc7a23b95",
+    "arbre-benoit-coste-a4-1.svg": "74051d5092c88c985199fe0a9d8f34a002696c077cabf8a08e2c375c9ce79fca",
+    "arbre-benoit-coste-a4-2.pdf": "c640d83a1272e19df3b5f2098d5e1e32ff8873733404dc9746cd0826b1d99988",
+    "arbre-benoit-coste-a4-2.png": "e16b67db15862b1d85734906ff5941cb4a0cbc371a5e07767e54f21412003228",
+    "arbre-benoit-coste-a4-2.svg": "c8a1d79b631e7b9aee30943ddfd8731a260cca9e0713403e16718f4886f9ce75",
+    "arbre-benoit-coste-a4-3.pdf": "7687592ed977bf1328ca039599fb13156cd9c9ec91547da2fe0f36b07e77fb72",
+    "arbre-benoit-coste-a4-3.png": "4f35b539fb9a01d2ddee1538d9df9d0bbdf9e4442d3dac3eded4577701d6c6a7",
+    "arbre-benoit-coste-a4-3.svg": "5b3c189eb8f2fde2666d224f259ba054142af23522afe08dffeddf64bbcce12b",
+    "arbre-benoit-coste-a4-4.pdf": "e489ac124f933c4733b2cacd5f8f6ae58cd1f11e2c574aaf3cc05eeebdf79f02",
+    "arbre-benoit-coste-a4-4.png": "8d5ada66fc6e457c3556d40bd4c081786618dd863c16997212e9154b12b2ed5f",
+    "arbre-benoit-coste-a4-4.svg": "cd989c171831282ed1f0357d4eb2b3eab013fb7a7a4ebdf2593eff04b006e4c6",
+    "arbre-benoit-coste-a4-overview.pdf": "ccddac141d0af6481992b07165b022c76c165d72b7ac9641ef521a9a6c2706a5",
+    "arbre-benoit-coste-a4-overview.png": "e4fd2205cc192f7f216a711ee15c7e35a4f3f913ed55672bdb462505199e08b4",
+    "arbre-benoit-coste-a4-overview.svg": "43269a1eadc54a01a271fae54e29ccc1b0bb7425a8b49b68ab48365d3e630050",
+    "arbre-benoit-coste.pdf": "6d3d48b0a9548dbe6db3e740d39fb227647eb4022aae5a5e8a70bc43fbfab0ec",
+    "arbre-benoit-coste.png": "ba1429496d9e6c7809ae4d99505e7a23cc0cc961ab82a4a2492514f5ababdeaf",
+    "arbre-benoit-coste.svg": "17fb6e9e99ce6a9bd2595aae932815836b1e80079b5759760c5733ff13c13022"
+  },
+  "notes": [
+    "SVG canonique; PDF et PNG dérivent de la même source SVG.",
+    "Les handles Gramps, jetons et données brutes ne sont pas publiés."
+  ]
+}

@@ -34,9 +34,28 @@
 scratch*
 *.tmp
 
+# Données et secrets de régénération généalogique — jamais versionnés
+.env
+.env.*
+!.env.example
+*.gramps
+*.ged
+*.gpkg
+genealogie/private/
+genealogie/staging/
+genealogie/assets/*.dot
+genealogie/assets/*.tmp
+genealogie/assets/*.log
+
 # Fichiers système et éditeurs
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Caches et métadonnées de travail non publiables
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.hermes/

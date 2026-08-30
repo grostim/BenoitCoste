@@ -21,6 +21,35 @@ Les documents sont automatiquement compilés et mis à disposition dans les troi
 
 ---
 
+## 🌳 Annexe généalogique
+
+Une annexe distincte du manuscrit présente la généalogie de Benoît Coste et
+Joséphine Colomb de Gast. Elle est explicitement signalée dans le PDF comme
+**« Ajout du transcripteur — hors document original »** et n'altère pas le
+contenu des trente-huit chapitres transcrits.
+
+Le pipeline local produit un éventail de deux générations ascendantes et d'une
+génération descendante, avec portraits soumis au mode
+`publication_safe`, ainsi qu'un graphe séparé des collatéraux cités. Les
+personnes repérées dans l'ouvrage sont identifiées par le tag Gramps exact
+`Cité dans les Mémoires de Benoît Coste` ; le signal combine forme et couleur
+pour rester lisible en niveaux de gris.
+
+La procédure complète est documentée dans [`genealogie/README.md`](./genealogie/README.md).
+Le test hors ligne, sans réseau ni données privées, peut être lancé ainsi :
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/update_genealogy.py \
+  --config genealogie/report.toml \
+  --fixture tests/fixtures/genealogy_fixture.json \
+  --dry-run
+```
+
+Les régénérations live sont réservées à l'environnement local ; aucun accès
+GrampsWeb ni credential n'est utilisé par la CI publique.
+
+---
+
 ## 📖 Présentation des Mémoires
 
 Benoît Coste (1781–1845), fils d'Isaac Coste et de Jeanne Jordan, livre dans cet ouvrage un témoignage de premier plan sur l'histoire civile et religieuse de Lyon et de la France :
@@ -55,6 +84,9 @@ BenoitCoste/
 │   ├── ...
 │   └── Ch 38.pdf
 ├── Memoires de Benoit Coste.tex   # Source LaTeX principal du document
+├── genealogie/                     # Chapitre et configuration de régénération
+├── scripts/                        # Audit, génération et contrôles public-safe
+├── tests/                          # Fixtures et tests offline
 ├── CONVENTIONS_TRANSCRIPTION.md    # Guide des conventions éditoriales et typographiques
 ├── README.md                       # Présentation du projet et liens de téléchargement
 └── .gitignore                      # Exclusion des fichiers temporaires LaTeX

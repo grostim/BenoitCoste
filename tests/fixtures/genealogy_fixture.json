@@ -1,0 +1,13 @@
+{
+  "report": {
+    "version": "fixture-1.2.4-highlight",
+    "options_help": {
+      "highlight_tag": ["", "", "A tag name"],
+      "show_highlight_markers": ["", "", "A boolean"],
+      "ancestor_generations": ["", "", "A number"],
+      "descendant_generations": ["", "", "A number"],
+      "privacy_mode": ["", "", ["publication_safe"]]
+    }
+  },
+  "fan_svg_path": "tests/fixtures/fan.svg"
+}
