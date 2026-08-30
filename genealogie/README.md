@@ -14,13 +14,13 @@ La régénération locale utilise le rapport Gramps `two_way_fan_chart` avec :
 - le tag exact `Cité dans les Mémoires de Benoît Coste` pour le repérage des
   personnes citées ;
 - les marqueurs de tag désactivés dans l'éventail public ;
-- les prénoms d'usage utilisés pour les descendants visibles ;
-- un graphe relationnel séparé pour les collatéraux cités.
+- les prénoms d'usage utilisés pour les descendants visibles.
 
-Le tag est résolu par son nom dans Gramps. Aucun handle technique n'est codé
-dans le chapitre ou dans les dessins publics. Les six citations de `S2212`
-qui ne permettent pas de remonter à une personne restent des cas d'audit et ne
-sont pas rattachées automatiquement.
+Le tag est résolu par son nom dans Gramps et sert uniquement au contrôle du
+périmètre de publication. Aucun handle technique n'est codé dans le chapitre
+ou dans les dessins publics. Les six citations de `S2212` qui ne permettent
+pas de remonter à une personne restent des cas d'audit et ne sont pas
+rattachées automatiquement.
 
 ## Régénération offline
 
@@ -33,7 +33,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/update_genealogy.py \
   --dry-run
 ```
 
-Ce mode valide la configuration, le filtrage public, le graphe, le SVG et les
+Ce mode valide la configuration, le filtrage public, le SVG et les
 conversions sans écrire dans `genealogie/assets/`.
 
 ## Régénération live, uniquement en local
@@ -53,29 +53,20 @@ SVG contient une ressource externe ou si une information technique apparaît
 dans la projection publique. Il ne faut pas utiliser
 `--allow-missing-highlight` pour une publication.
 
-Avant toute application du tag, exécuter `scripts/audit_s2212.py` en lecture
-seule puis faire relire le manifeste d'approbation. Le script
-`scripts/apply_cited_tag.py` refuse un manifeste sans
-`approval.status = "approved"`, sauvegarde les objets complets hors dépôt et
-vérifie chaque écriture par relecture. Les sauvegardes et manifestes de travail
-restent sous `/tmp/` ou dans un autre emplacement externe.
-
 ## Artefacts
 
 La sortie public-safe comprend :
 
 - `arbre-benoit-coste.svg` : artefact canonique ;
 - `arbre-benoit-coste.pdf` et `.png` : dérivés du SVG canonique ;
-- `arbre-benoit-coste-a4-overview.*` : vue d'ensemble A4 paysage ;
-- `arbre-benoit-coste-a4-1.*` à `a4-4.*` : vues vectorielles de détail ;
-- `parente-citee.svg`, `.pdf` et `.png` : graphe des parentés collatérales ;
+- `arbre-benoit-coste-a4-overview.*` : vue A4 paysage insérée en pleine page
+  dans le livre via `\includepdf[fitpaper]` ;
+- `arbre-benoit-coste-a4-1.*` à `a4-4.*` : vues vectorielles de détail
+  (artefacts autonomes, non inclus dans le livre) ;
 - `manifest.json` : dimensions, paramètres publics et empreintes SHA-256.
 
-Le poster complet n'est pas réduit directement pour remplacer les vues de
-lecture A4 : la vue d'ensemble sert au repérage. Les panneaux de détail restent
-des artefacts vectoriels autonomes du pipeline, mais ne sont plus inclus dans
-le livre. Le graphe collatéral conserve les personnes intermédiaires nécessaires
-au lien familial, mais masque leur identité lorsqu'elles sont privées.
+Le schéma relationnel des parentés citées a été retiré définitivement du
+livre et du pipeline : il n'est plus généré, validé ni publié.
 
 Les PDF et PNG doivent toujours être régénérés depuis le SVG validé. Ne jamais
 retoucher manuellement un SVG pour corriger un nom, une date, une filiation ou

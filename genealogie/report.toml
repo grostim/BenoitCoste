@@ -19,15 +19,9 @@ orientation = "landscape"
 paper_size = "A0"
 output_format = "svg"
 
-[kinship_graph]
-center_gramps_id = "I0095"
-include_only_tagged = true
-privacy_mode = "publication_safe"
-
 [outputs]
 directory = "genealogie/assets"
 canonical_fan_stem = "arbre-benoit-coste"
-kinship_stem = "parente-citee"
 
 [validation]
 expected_labels = ["Coste", "Colomb"]

@@ -28,7 +28,7 @@ import sys
 import tempfile
 import time
 import tomllib
-from typing import Any, Iterable
+from typing import Any
 from urllib.parse import urlencode
 import xml.etree.ElementTree as ET
 
@@ -37,7 +37,6 @@ REPO_ROOT = SCRIPT_DIR.parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from build_cited_kinship_graph import build_from_data  # noqa: E402
 from check_genealogy_assets import AssetValidationError, inspect_svg, validate_svg_file  # noqa: E402
 from gramps_api import GrampsApiClient, GrampsApiError, client_from_external_env  # noqa: E402
 
@@ -119,120 +118,6 @@ def report_options(config: dict[str, Any]) -> dict[str, Any]:
         ),
         "respect_media_crop": "True",
     }
-
-
-def resolve_tag_handle(tags: Iterable[dict[str, Any]], tag_name: str) -> str:
-    matches = [
-        str(tag.get("handle"))
-        for tag in tags
-        if isinstance(tag, dict) and tag.get("name") == tag_name and tag.get("handle")
-    ]
-    if len(matches) != 1:
-        raise PipelineError(f"expected exactly one Gramps tag named {tag_name!r}, found {len(matches)}")
-    return matches[0]
-
-
-def _gramps_id(row: dict[str, Any]) -> str:
-    return str(row.get("gramps_id") or row.get("id") or "")
-
-
-def _handle(row: dict[str, Any]) -> str:
-    return str(row.get("handle") or row.get("id") or "")
-
-
-def _list_all(client: GrampsApiClient, collection: str, *, extend: str | None = None) -> list[dict[str, Any]]:
-    result: list[dict[str, Any]] = []
-    for page in range(1, 201):
-        query: dict[str, str | int] = {"page": page, "pagesize": 500}
-        if extend:
-            query["extend"] = extend
-        payload = client.get_json(f"/{collection.strip('/')}/", query=query)
-        if isinstance(payload, list):
-            rows = payload
-        elif isinstance(payload, dict):
-            rows = next(
-                (payload[key] for key in (collection.strip("/"), "items", "results") if isinstance(payload.get(key), list)),
-                [],
-            )
-        else:
-            raise PipelineError(f"unexpected {collection} collection response")
-        result.extend(row for row in rows if isinstance(row, dict))
-        if len(rows) < 500:
-            return result
-    raise PipelineError(f"{collection} collection exceeded the pagination safety bound")
-
-
-def _family_member_handles(family: dict[str, Any]) -> list[str]:
-    members: list[str] = []
-    for key in ("father_handle", "mother_handle", "father", "mother"):
-        value = family.get(key)
-        if isinstance(value, dict):
-            value = value.get("ref") or value.get("handle")
-        if value:
-            members.append(str(value))
-    children = family.get("child_ref_list") or family.get("children") or family.get("child_handles") or []
-    if isinstance(children, dict):
-        children = children.values()
-    for value in children:
-        if isinstance(value, dict):
-            value = value.get("ref") or value.get("handle")
-        if value:
-            members.append(str(value))
-    return list(dict.fromkeys(members))
-
-
-def _person_name(person: dict[str, Any]) -> str:
-    primary = person.get("primary_name") or {}
-    first = str(primary.get("call") or primary.get("first_name") or "").strip()
-    surnames = primary.get("surname_list") or []
-    surname = ""
-    if surnames and isinstance(surnames[0], dict):
-        surname = str(surnames[0].get("surname") or "").strip()
-    return " ".join(item for item in (first, surname) if item) or "Personne sans nom"
-
-
-def build_private_projection(client: GrampsApiClient, config: dict[str, Any], tag_handle: str) -> tuple[dict[str, Any], str, str]:
-    people_rows = _list_all(client, "people", extend="tag_list,family_list,parent_family_list,child_ref_list,media_list")
-    family_rows = _list_all(client, "families", extend="child_ref_list,father_handle,mother_handle")
-    center_gid = str(config["gramps"]["center_family"])
-    center_family = next((row for row in family_rows if _gramps_id(row) == center_gid), None)
-    if center_family is None:
-        raise PipelineError(f"center family {center_gid} was not found")
-    members = _family_member_handles(center_family)
-    people_by_handle = {_handle(row): row for row in people_rows if _handle(row)}
-    center_handle = next(
-        (
-            handle for handle in members
-            if handle in people_by_handle and _person_name(people_by_handle[handle]).lower().startswith("benoît")
-        ),
-        members[0] if members else "",
-    )
-    if not center_handle:
-        raise PipelineError("center family has no person member")
-    projection_people: list[dict[str, Any]] = []
-    for row in people_rows:
-        handle = _handle(row)
-        if not handle:
-            continue
-        projection_people.append(
-            {
-                "handle": handle,
-                "gramps_id": _gramps_id(row),
-                "primary_name": copy.deepcopy(row.get("primary_name") or {}),
-                "tag_list": list(row.get("tag_list") or []),
-                "visible": not bool(row.get("private", False)),
-                "masked": False,
-                "birth": row.get("birth_year") or "",
-                "death": row.get("death_year") or "",
-            }
-        )
-    projection_families = [
-        {"handle": _handle(row), **{key: copy.deepcopy(row.get(key)) for key in ("father_handle", "mother_handle", "child_ref_list", "children", "child_handles")}}
-        for row in family_rows
-        if _handle(row)
-    ]
-    data = {"people": projection_people, "families": projection_families}
-    return data, center_handle, tag_handle
 
 
 def _find_value(value: Any, keys: tuple[str, ...]) -> Any:
@@ -902,7 +787,6 @@ def _safe_manifest(
     output_dir: Path,
     config: dict[str, Any],
     files: list[Path],
-    graph_stats: dict[str, Any],
     report_version: str,
     *,
     canonical_name: str,
@@ -928,7 +812,6 @@ def _safe_manifest(
         ),
         "canonical": canonical_name,
         "files": checksums,
-        "collateral_graph": graph_stats,
         "notes": [
             "SVG canonique; PDF et PNG dérivent de la même source SVG.",
             "Les handles Gramps, jetons et données brutes ne sont pas publiés.",
@@ -958,7 +841,6 @@ def build_assets(
         f"/reports/{config['gramps']['report_id']}?include_help=true"
     )
     ensure_addon_capability(report_info, allow_missing=allow_missing_highlight)
-    tag_name = str(config["gramps"]["highlight_tag"])
     if fixture is not None:
         options = report_options(config)
         if "fan_svg" in fixture:
@@ -967,17 +849,11 @@ def build_assets(
             fan_svg = (Path(fixture["fan_svg_path"]).parent / Path(fixture["fan_svg_path"]).name).read_bytes()
         else:
             raise PipelineError("fixture has no fan_svg or fan_svg_path")
-        graph_data = fixture["graph"]
-        tag_handle = fixture.get("tag_handle")
-        center_handle = str(fixture["center_handle"])
         report_version = str(report_info.get("version", "fixture"))
     else:
         if client is None:
             raise PipelineError("a live client is required outside fixture mode")
         ensure_addon_capability(report_info)
-        tags = _list_all(client, "tags")
-        tag_handle = resolve_tag_handle(tags, tag_name)
-        graph_data, center_handle, tag_handle = build_private_projection(client, config, tag_handle)
         fan_svg = run_remote_report(client, config, report_info)
         options = report_options(config)
         report_version = str(report_info.get("version", "unknown"))
@@ -995,7 +871,6 @@ def build_assets(
         stage.mkdir(parents=True, exist_ok=True)
         outputs_config = config.get("outputs") or {}
         fan_stem = str(outputs_config.get("canonical_fan_stem") or "arbre-benoit-coste")
-        graph_stem = str(outputs_config.get("kinship_stem") or "parente-citee")
         validation_config = config.get("validation") or {}
         expected_labels = tuple(str(label) for label in validation_config.get("expected_labels", ("Coste", "Colomb")))
         minimum_text_elements = int(validation_config.get("minimum_text_elements", 1))
@@ -1031,23 +906,6 @@ def build_assets(
             stem = svg.with_suffix("")
             convert_svg(svg, stem.with_suffix(".pdf"), "pdf")
             convert_svg(svg, stem.with_suffix(".png"), "png")
-        subgraph, dot_text, graph_outputs = build_from_data(
-            graph_data,
-            center_handle=center_handle,
-            tag_handle=tag_handle,
-            output_dir=stage,
-            stem=graph_stem,
-            render=True,
-        )
-        graph_svg = stage / f"{graph_stem}.svg"
-        validate_svg_file(graph_svg, expected_labels=("Coste",), minimum_text_elements=1, minimum_path_elements=1)
-        graph_stats = {
-            "selected_people": len(subgraph["people"]),
-            "selected_unions": len(subgraph["families"]),
-            "connected_cited_people": len(subgraph["tagged_handles"]),
-            "unconnected_cited_people": len(subgraph["unconnected_tagged_handles"]),
-            "tag_signal": "double-circle + terracotta/bordeaux contour",
-        }
         # DOT is a source artifact, but the versioned public package only
         # retains a handle-free DOT if the configuration explicitly asks for it.
         manifest_files = [path for path in stage.iterdir() if path.suffix.lower() in {".svg", ".pdf", ".png"}]
@@ -1055,7 +913,6 @@ def build_assets(
             output_dir,
             config,
             manifest_files,
-            graph_stats,
             report_version,
             canonical_name=fan_path.name,
         )
@@ -1098,7 +955,7 @@ def main(argv: list[str] | None = None) -> int:
                     fixture=fixture,
                     allow_missing_highlight=args.allow_missing_highlight,
                 )
-                print(json.dumps({"mode": "fixture-dry-run", "files": result["files"], "graph": result["manifest"]["collateral_graph"]}, ensure_ascii=False))
+                print(json.dumps({"mode": "fixture-dry-run", "files": result["files"]}, ensure_ascii=False))
             return 0
         output_dir = args.output_dir or REPO_ROOT / "genealogie" / "assets"
         if fixture is not None:

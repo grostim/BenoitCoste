@@ -8,7 +8,6 @@ import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 
-from scripts.build_cited_kinship_graph import build_from_data, _fallback_graph_svg
 from scripts.check_genealogy_assets import AssetValidationError, inspect_svg, validate_svg_file
 from scripts.update_genealogy import (
     AddonCapabilityError,
@@ -46,12 +45,22 @@ class GenealogyPipelineTests(unittest.TestCase):
         self.assertNotIn("GRAMPSWEB_API_PASS", config_text)
         self.assertNotIn("Bearer ", config_text)
 
-    def test_chapter_keeps_only_the_overview_and_kinship_figure(self) -> None:
+    def test_chapter_keeps_only_the_full_page_fan_figure(self) -> None:
         chapter = (ROOT / "genealogie" / "chapitre.tex").read_text(encoding="utf-8")
         self.assertIn("arbre-benoit-coste-a4-overview.pdf", chapter)
-        self.assertIn("parente-citee.pdf", chapter)
+        self.assertIn(r"\includepdf[fitpaper]", chapter)
+        self.assertNotIn("parente-citee", chapter)
         for index in range(1, 5):
             self.assertNotIn(f"arbre-benoit-coste-a4-{index}.pdf", chapter)
+
+    def test_chapter_introduction_is_reader_facing(self) -> None:
+        chapter = (ROOT / "genealogie" / "chapitre.tex").read_text(encoding="utf-8")
+        self.assertIn("ajout du transcripteur", chapter.lower())
+        self.assertIn("ascendants et descendants directs du\ncouple Coste/Colomb", chapter.replace("\r\n", "\n"))
+        self.assertNotIn("Gramps", chapter)
+        self.assertNotIn("publication_safe", chapter)
+        self.assertNotIn("pipeline", chapter)
+        self.assertNotIn("Limites éditoriales", chapter)
 
     def test_old_addon_is_rejected_without_override(self) -> None:
         with self.assertRaises(AddonCapabilityError):
@@ -140,47 +149,6 @@ class GenealogyPipelineTests(unittest.TestCase):
         )
         self.assertIn(b"style=\"background: #FAF9F5\"", overview)
 
-    def test_graph_uses_minimal_paths_and_masks_private_connectors(self) -> None:
-        subgraph, dot, _outputs = build_from_data(
-            self.fixture["graph"],
-            center_handle="person-center",
-            tag_handle="tag-cited",
-        )
-        self.assertEqual(subgraph["tagged_handles"], ["person-cited"])
-        self.assertEqual(subgraph["unconnected_tagged_handles"], ["person-unrelated"])
-        labels = " ".join(row.get("name", "") for row in subgraph["people"])
-        self.assertNotIn("Should never be shown", dot)
-        self.assertIn("Personne privée", dot)
-        self.assertIn("Josephine Colomb", dot)
-        self.assertNotIn("person-center", dot)
-        self.assertNotIn("person-unrelated", dot)
-        self.assertNotIn("Should never be shown", dot)
-        self.assertIn("doublecircle", dot)
-        self.assertIn("#7C2F3A", dot)
-
-    def test_fallback_graph_is_compact_and_keeps_all_labels(self) -> None:
-        people = [
-            {"handle": f"person-{index}", "name": f"Personne {index}", "tagged": True}
-            for index in range(30)
-        ]
-        families = [
-            {"handle": f"family-{index}", "children": [f"person-{index}", f"person-{(index + 1) % 30}"]}
-            for index in range(29)
-        ]
-        subgraph, dot, _outputs = build_from_data(
-            {"people": people, "families": families},
-            center_handle="person-0",
-            tag_handle="unused-tag",
-        )
-        svg = _fallback_graph_svg(dot)
-        root = ET.fromstring(svg)
-        width = float(root.get("width", "0").removesuffix("px"))
-        height = float(root.get("height", "0").removesuffix("px"))
-        self.assertLess(height / width, 1.0)
-        self.assertEqual(len([node for node in root.iter() if node.tag.rsplit("}", 1)[-1] == "text"]), len(subgraph["people"]))
-        self.assertEqual(len([node for node in root.iter() if node.tag.rsplit("}", 1)[-1] == "path"]), 58)
-        self.assertEqual(len(subgraph["people"]), 30)
-
     def test_asset_checker_rejects_remote_resources_and_gramps_ids(self) -> None:
         base = Path(ROOT / "tests" / "fixtures" / "fan.svg").read_bytes()
         with self.assertRaises(AssetValidationError):
@@ -218,7 +186,7 @@ class GenealogyPipelineTests(unittest.TestCase):
             self.assertEqual(result["manifest"]["ancestor_generations"], 2)
             self.assertEqual(result["manifest"]["descendant_generations"], 1)
             self.assertFalse(result["manifest"]["show_highlight_markers"])
-            self.assertGreater(result["manifest"]["collateral_graph"]["connected_cited_people"], 0)
+            self.assertNotIn("collateral_graph", result["manifest"])
             expected = {
                 "arbre-benoit-coste.svg",
                 "arbre-benoit-coste.pdf",
@@ -229,17 +197,20 @@ class GenealogyPipelineTests(unittest.TestCase):
                 "arbre-benoit-coste-a4-1.svg",
                 "arbre-benoit-coste-a4-1.pdf",
                 "arbre-benoit-coste-a4-1.png",
-                "parente-citee.svg",
-                "parente-citee.pdf",
-                "parente-citee.png",
                 "manifest.json",
             }
             self.assertTrue(expected.issubset({path.name for path in output.iterdir()}))
+            self.assertFalse(
+                {path.name for path in output.iterdir()} & {
+                    "parente-citee.svg",
+                    "parente-citee.pdf",
+                    "parente-citee.png",
+                }
+            )
             manifest = (output / "manifest.json").read_text(encoding="utf-8")
             self.assertNotIn("person-center", manifest)
             self.assertNotIn("person-private", manifest)
             validate_svg_file(output / "arbre-benoit-coste.svg", expected_labels=("Coste", "Colomb"))
-            validate_svg_file(output / "parente-citee.svg", expected_labels=("Coste",))
 
 
 if __name__ == "__main__":

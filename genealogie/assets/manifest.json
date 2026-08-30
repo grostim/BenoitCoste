@@ -29,17 +29,7 @@
     "arbre-benoit-coste-a4-overview.svg": "43269a1eadc54a01a271fae54e29ccc1b0bb7425a8b49b68ab48365d3e630050",
     "arbre-benoit-coste.pdf": "6d3d48b0a9548dbe6db3e740d39fb227647eb4022aae5a5e8a70bc43fbfab0ec",
     "arbre-benoit-coste.png": "ba1429496d9e6c7809ae4d99505e7a23cc0cc961ab82a4a2492514f5ababdeaf",
-    "arbre-benoit-coste.svg": "17fb6e9e99ce6a9bd2595aae932815836b1e80079b5759760c5733ff13c13022",
-    "parente-citee.pdf": "f217e6c0de44570294bc1912dd3622da267d03438e7b1e1092c45144762b4ec3",
-    "parente-citee.png": "ec8284cda46b24ea5215ea5739de34588ccb8be5d2b56538adbbd77769be2978",
-    "parente-citee.svg": "d3ae30277b269887b5ebbdfd7e696a2e0f88314e9134be9968bb9044d1333b35"
-  },
-  "collateral_graph": {
-    "selected_people": 30,
-    "selected_unions": 10,
-    "connected_cited_people": 30,
-    "unconnected_cited_people": 3,
-    "tag_signal": "double-circle + terracotta/bordeaux contour"
+    "arbre-benoit-coste.svg": "17fb6e9e99ce6a9bd2595aae932815836b1e80079b5759760c5733ff13c13022"
   },
   "notes": [
     "SVG canonique; PDF et PNG dérivent de la même source SVG.",

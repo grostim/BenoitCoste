@@ -1,76 +1,15 @@
 % Ajout éditorial séparé du manuscrit original.
-% Les figures sont produites par scripts/update_genealogy.py depuis un SVG
-% canonique validé. Le maître LaTeX conserve toutefois un message de repli si
-% une copie de travail ne contient pas encore les artefacts locaux.
 
 \chapter*{Ajout du transcripteur --- hors document original}
 \addcontentsline{toc}{chapter}{Ajout du transcripteur --- hors document original}
 
 \begin{quote}
-\textit{Ce chapitre ne fait pas partie du document original de Benoît Coste. Il
-présente une synthèse généalogique produite séparément à partir de la base
-Gramps, selon une configuration reproductible et avec un filtrage de
-publication.}
+\textit{Ce chapitre ne fait pas partie des Mémoires de Benoît Coste. C'est un
+ajout du transcripteur, destiné uniquement à donner au lecteur un contexte
+familial.}
 \end{quote}
 
-\section*{Objet et méthode}
+Il s'agit d'un schéma généalogique des ascendants et descendants directs du
+couple Coste/Colomb.
 
-Cette vue situe Benoît Coste et Joséphine Colomb de Gast dans leur famille,
-en distinguant les ascendances, la descendance et les parentés collatérales
-citées dans les Mémoires. L'éventail principal couvre deux générations
-ascendantes et une génération descendante. Un schéma relationnel distinct
-représente les frères, sœurs, oncles, cousins et familles alliées nécessaires à
-la compréhension des liens, sans les confondre avec les générations de
-l'éventail.
-
-Les personnes mentionnées dans l'ouvrage sont repérées dans Gramps par le tag
-\textit{Cité dans les Mémoires de Benoît Coste}. Ce tag sert à sélectionner les
-parentés citées et à contrôler le périmètre de publication ; il n'est pas
-représenté dans l'éventail, afin de préserver une lecture généalogique sobre.
-Les personnes masquées par le mode de publication ne conservent aucun portrait.
-Les portraits visibles sont sélectionnés et recadrés par le rapport, jamais
-ajoutés par retouche manuelle du dessin.
-
-Les fichiers publiés sont issus d'un SVG canonique validé. Le PDF et le PNG
-sont dérivés de ce même SVG ; les panneaux A4 sont des vues vectorielles
-séparées et non une réduction destinée à remplacer le poster complet. Les
-artefacts présents dans ce dépôt correspondent à une génération live
-public-safe vérifiée ; le pipeline local permet de les régénérer depuis la
-source Gramps sans déposer de données brutes dans le dépôt.
-
-\begingroup
-\newcommand{\genealogiefigure}[3]{%
-  \IfFileExists{#1}{%
-    \begin{landscape}
-      \thispagestyle{empty}
-      \begin{center}
-        \includegraphics[width=0.88\paperheight,height=0.70\paperwidth,keepaspectratio]{#1}
-        \par\medskip
-        \refstepcounter{figure}\label{#3}%
-        {\small\bfseries Figure~\thefigure{} — #2\par}
-      \end{center}
-    \end{landscape}
-    \clearpage
-  }{%
-    \begin{quote}
-      \textit{Figure non incluse dans cette copie : #2. La génération locale
-      des artefacts public-safe est nécessaire avant l'impression.}
-    \end{quote}
-  }%
-}
-
-\genealogiefigure{genealogie/assets/arbre-benoit-coste-a4-overview.pdf}{Vue d'ensemble A4 paysage de l'éventail généalogique.}{fig:genealogie-vue-ensemble}
-
-\genealogiefigure{genealogie/assets/parente-citee.pdf}{Schéma relationnel des parentés collatérales citées et des intermédiaires nécessaires.}{fig:parente-citee}
-\endgroup
-
-\section*{Limites éditoriales}
-
-Cette annexe ne modifie pas la transcription des trente-huit chapitres. Les
-noms, dates, filiations, unions et états de confidentialité restent ceux de
-Gramps au moment de la génération. Toute divergence entre les dates de
-l'ouvrage et celles de la base doit être arbitrée dans la source généalogique
-avant une publication définitive ; elle ne doit pas être corrigée directement
-dans une figure exportée. La divergence entre 1781--1845 dans le manuscrit et
-1781--1846 dans Gramps est conservée telle quelle dans cette édition, en
-attente d'une preuve généalogique complémentaire.
+\includepdf[fitpaper]{genealogie/assets/arbre-benoit-coste-a4-overview.pdf}
