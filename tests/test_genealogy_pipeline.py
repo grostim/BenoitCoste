@@ -8,7 +8,9 @@ import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 
+from scripts.build_portrait_gallery import build_portrait_gallery, fixture_records
 from scripts.check_genealogy_assets import AssetValidationError, inspect_svg, validate_svg_file
+from scripts.relations_gramps import RelationshipResolver
 from scripts.update_genealogy import (
     AddonCapabilityError,
     build_assets,
@@ -56,11 +58,74 @@ class GenealogyPipelineTests(unittest.TestCase):
     def test_chapter_introduction_is_reader_facing(self) -> None:
         chapter = (ROOT / "genealogie" / "chapitre.tex").read_text(encoding="utf-8")
         self.assertIn("ajout du transcripteur", chapter.lower())
-        self.assertIn("ascendants et descendants directs du\ncouple Coste/Colomb", chapter.replace("\r\n", "\n"))
+        self.assertIn("ascendants et les descendants directs du couple Coste/Colomb", chapter)
         self.assertNotIn("Gramps", chapter)
         self.assertNotIn("publication_safe", chapter)
         self.assertNotIn("pipeline", chapter)
         self.assertNotIn("Limites éditoriales", chapter)
+
+    def test_relationship_resolver_handles_blood_and_in_law_paths(self) -> None:
+        def person(handle: str, gid: str, gender: int) -> dict[str, object]:
+            return {
+                "handle": handle,
+                "gramps_id": gid,
+                "gender": gender,
+                "primary_name": {"first_name": gid, "surname_list": [{"surname": "Test"}]},
+            }
+
+        people = [
+            person("center", "I0095", 1),
+            person("spouse", "I0096", 0),
+            person("father", "I0001", 1),
+            person("mother", "I0002", 0),
+            person("sibling", "I0003", 0),
+            person("sibling-spouse", "I0004", 1),
+            person("grandchild", "I0006", 0),
+            person("child", "I0007", 1),
+            person("child-spouse", "I0008", 0),
+            person("spouse-parent-1", "I0009", 1),
+            person("spouse-parent-2", "I0010", 0),
+            person("spouse-sibling", "I0011", 0),
+            person("spouse-sibling-spouse", "I0012", 1),
+            person("unknown", "I0005", 0),
+        ]
+        families = [
+            {"father_handle": "father", "mother_handle": "mother", "child_ref_list": [{"ref": "center"}, {"ref": "sibling"}]},
+            {"father_handle": "center", "mother_handle": "spouse", "child_ref_list": [{"ref": "child"}]},
+            {"father_handle": "child", "mother_handle": "child-spouse", "child_ref_list": [{"ref": "grandchild"}]},
+            {"father_handle": "spouse-parent-1", "mother_handle": "spouse-parent-2", "child_ref_list": [{"ref": "spouse"}, {"ref": "spouse-sibling"}]},
+            {"father_handle": "spouse-sibling", "mother_handle": "spouse-sibling-spouse", "child_ref_list": []},
+            {"father_handle": "sibling", "mother_handle": "sibling-spouse", "child_ref_list": []},
+        ]
+        resolver = RelationshipResolver(people, families, "center")
+        self.assertEqual(resolver.resolve("father").label, "le père")
+        self.assertEqual(resolver.resolve("sibling").label, "la sœur")
+        self.assertEqual(resolver.resolve("sibling-spouse").label, "conjoint(e) de la sœur")
+        self.assertEqual(resolver.resolve("grandchild").label, "la petite-fille")
+        self.assertEqual(
+            resolver.resolve("spouse-sibling-spouse").label,
+            "conjoint(e) de la sœur de I0096 Test (par alliance)",
+        )
+        self.assertEqual(resolver.resolve("unknown").label, "relation non résolue dans la structure Gramps")
+
+    def test_gallery_formats_usage_name_and_one_page_per_person(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="gallery-test-") as tmp:
+            result = build_portrait_gallery(fixture_records(self.fixture), Path(tmp) / "assets")
+            tex = result.tex_path.read_text(encoding="utf-8")
+            self.assertEqual(result.people, 3)
+            self.assertEqual(result.pages, 3)
+            self.assertEqual(result.people_with_portraits, 2)
+            self.assertEqual(result.portrait_count, 4)
+            self.assertEqual(tex.count(r"\clearpage"), 3)
+            self.assertIn(r"\underline{Joséphine}", tex)
+            self.assertIn("Benoît COSTE", tex)
+            self.assertIn("COLOMB DE GAST", tex)
+            self.assertIn("\u00e9pouse", tex)
+            self.assertNotIn("I0095", tex)
+            self.assertNotIn("/tmp/", tex)
+            self.assertNotIn(r"%\linewidth", tex)
+            self.assertIn("genealogie/assets/galerie/portraits/", tex)
+            self.assertEqual(len(list((Path(tmp) / "assets" / "galerie" / "portraits").glob("*.jpg"))), 3)
 
     def test_old_addon_is_rejected_without_override(self) -> None:
         with self.assertRaises(AddonCapabilityError):
@@ -182,11 +247,19 @@ class GenealogyPipelineTests(unittest.TestCase):
     def test_fixture_build_exercises_conversion_and_public_manifest(self) -> None:
         with tempfile.TemporaryDirectory(prefix="genealogy-test-") as tmp:
             output = Path(tmp) / "assets"
+            stale = output / "galerie" / "portraits" / "stale.jpg"
+            stale.parent.mkdir(parents=True)
+            stale.write_bytes(b"stale")
             result = build_assets(self.config, output_dir=output, fixture=self.fixture)
             self.assertEqual(result["manifest"]["ancestor_generations"], 2)
             self.assertEqual(result["manifest"]["descendant_generations"], 1)
             self.assertFalse(result["manifest"]["show_highlight_markers"])
             self.assertNotIn("collateral_graph", result["manifest"])
+            self.assertEqual(result["manifest"]["gallery"]["people"], 3)
+            self.assertEqual(result["manifest"]["gallery"]["pages"], 3)
+            self.assertEqual(result["manifest"]["gallery"]["people_with_portraits"], 2)
+            self.assertEqual(result["manifest"]["gallery"]["portraits"], 4)
+            self.assertFalse(stale.exists())
             expected = {
                 "arbre-benoit-coste.svg",
                 "arbre-benoit-coste.pdf",
@@ -197,16 +270,20 @@ class GenealogyPipelineTests(unittest.TestCase):
                 "arbre-benoit-coste-a4-1.svg",
                 "arbre-benoit-coste-a4-1.pdf",
                 "arbre-benoit-coste-a4-1.png",
+                "galerie/galerie.tex",
                 "manifest.json",
             }
-            self.assertTrue(expected.issubset({path.name for path in output.iterdir()}))
-            self.assertFalse(
-                {path.name for path in output.iterdir()} & {
-                    "parente-citee.svg",
-                    "parente-citee.pdf",
-                    "parente-citee.png",
-                }
+            files = {str(path.relative_to(output)) for path in output.rglob("*") if path.is_file()}
+            self.assertTrue(expected.issubset(files))
+            self.assertEqual(
+                {path for path in files if path.startswith("galerie/portraits/") and path.endswith(".jpg")},
+                {
+                    "galerie/portraits/portrait-6d91715dce195b78f347.jpg",
+                    "galerie/portraits/portrait-98957cda47c33436d148.jpg",
+                    "galerie/portraits/portrait-cae0c1932888b318fc42.jpg",
+                },
             )
+            self.assertFalse(any(path.startswith("parente-citee") for path in files))
             manifest = (output / "manifest.json").read_text(encoding="utf-8")
             self.assertNotIn("person-center", manifest)
             self.assertNotIn("person-private", manifest)

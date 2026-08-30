@@ -103,7 +103,8 @@ jobs:
             cm-super \
             pandoc \
             graphviz \
-            librsvg2-bin
+            librsvg2-bin \
+            python3-pil
 
       - name: Vérification offline du pipeline généalogique
         run: |

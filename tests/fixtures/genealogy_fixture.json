@@ -1,6 +1,6 @@
 {
   "report": {
-    "version": "fixture-1.2.4-highlight",
+    "version": "fixture-1.2.9-gallery",
     "options_help": {
       "highlight_tag": ["", "", "A tag name"],
       "show_highlight_markers": ["", "", "A boolean"],
@@ -9,5 +9,69 @@
       "privacy_mode": ["", "", ["publication_safe"]]
     }
   },
-  "fan_svg_path": "tests/fixtures/fan.svg"
+  "fan_svg_path": "tests/fixtures/fan.svg",
+  "gallery": [
+    {
+      "gramps_id": "I0095",
+      "first_name": "Benoît",
+      "call_name": "",
+      "surname": "Coste",
+      "gender": 1,
+      "private": false,
+      "relation": "le père",
+      "relation_rank": 1,
+      "birth": ["17 octobre 1712", "Lyon"],
+      "death": ["8 février 1789", "Lyon"],
+      "occupations": ["Marchand de soie", "Échevin"],
+      "portraits": [
+        {
+          "data_base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAwUlEQVR4nO2XwQmAMAxFoziHZ4dwEk+O4Qgdw5MTOIJDOI6HShEK6U+qECT/5KU8X6XNt9nHkbQJ/aJe26pXVsbBDv4fuFOsGZb76K90xId5E18GDX6BJB4T/A3QrUaoRLROx5tgkCpil8EiKs4ugBVUkG3yHKt1Y3hpe8aVujGMtD1jBzv4M/AZ0DnDhJmS9oypWpovBSaNqUK62IHKxgo20rygrRaxwb6HfmOQjbdMQb1NySfmt706j/+YO9jBz1yNSzL5VZHd9wAAAABJRU5ErkJggg==",
+          "description": "Portrait de Benoît Coste"
+        }
+      ]
+    },
+    {
+      "gramps_id": "I0096",
+      "first_name": "Antoinette Joséphine",
+      "call_name": "Joséphine",
+      "surname": "Colomb De Gast",
+      "gender": 0,
+      "private": false,
+      "relation": "l'épouse",
+      "relation_rank": 1,
+      "birth": ["11 mai 1787", "Saint-Chamond"],
+      "death": ["12 mars 1855", "Saint-Étienne"],
+      "occupations": [],
+      "portraits": [
+        {
+          "data_base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAwUlEQVR4nO2XwQmAMAxFoziHZ4dwEk+O4Qgdw5MTOIJDOI6HShEK6U+qECT/5KU8X6XNt9nHkbQJ/aJe26pXVsbBDv4fuFOsGZb76K90xId5E18GDX6BJB4T/A3QrUaoRLROx5tgkCpil8EiKs4ugBVUkG3yHKt1Y3hpe8aVujGMtD1jBzv4M/AZ0DnDhJmS9oypWpovBSaNqUK62IHKxgo20rygrRaxwb6HfmOQjbdMQb1NySfmt706j/+YO9jBz1yNSzL5VZHd9wAAAABJRU5ErkJggg==",
+          "rect": [0, 0, 50, 100],
+          "description": "Double portrait — gauche"
+        },
+        {
+          "data_base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAwUlEQVR4nO2XwQmAMAxFoziHZ4dwEk+O4Qgdw5MTOIJDOI6HShEK6U+qECT/5KU8X6XNt9nHkbQJ/aJe26pXVsbBDv4fuFOsGZb76K90xId5E18GDX6BJB4T/A3QrUaoRLROx5tgkCpil8EiKs4ugBVUkG3yHKt1Y3hpe8aVujGMtD1jBzv4M/AZ0DnDhJmS9oypWpovBSaNqUK62IHKxgo20rygrRaxwb6HfmOQjbdMQb1NySfmt706j/+YO9jBz1yNSzL5VZHd9wAAAABJRU5ErkJggg==",
+          "rect": [50, 0, 100, 100],
+          "description": "Double portrait — droite"
+        },
+        {
+          "data_base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAwUlEQVR4nO2XwQmAMAxFoziHZ4dwEk+O4Qgdw5MTOIJDOI6HShEK6U+qECT/5KU8X6XNt9nHkbQJ/aJe26pXVsbBDv4fuFOsGZb76K90xId5E18GDX6BJB4T/A3QrUaoRLROx5tgkCpil8EiKs4ugBVUkG3yHKt1Y3hpe8aVujGMtD1jBzv4M/AZ0DnDhJmS9oypWpovBSaNqUK62IHKxgo20rygrRaxwb6HfmOQjbdMQb1NySfmt706j/+YO9jBz1yNSzL5VZHd9wAAAABJRU5ErkJggg==",
+          "description": "Portrait de Joséphine"
+        }
+      ]
+    },
+    {
+      "gramps_id": "I0999",
+      "first_name": "Personne",
+      "call_name": "",
+      "surname": "Sansportrait",
+      "gender": 0,
+      "private": false,
+      "relation": "relation non résolue dans la structure Gramps",
+      "relation_rank": 99,
+      "birth": null,
+      "death": null,
+      "occupations": [],
+      "portraits": []
+    }
+  ]
 }
