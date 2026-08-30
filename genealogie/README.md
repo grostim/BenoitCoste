@@ -43,8 +43,11 @@ Les médias sont retenus seulement lorsqu'ils sont explicitement décrits comme
 portrait/photo et qu'ils sont réellement des images. Les actes, registres,
 médailles, armoiries, annotations et documents sont exclus. Les rectangles de
 recadrage Gramps sont appliqués avec une marge, puis les images sont converties
-en JPEG sans métadonnées ; plusieurs portraits sont disposés en grille. La
-mise en page est bornée à une page par personne.
+en JPEG sans métadonnées ; plusieurs portraits sont disposés en grille. Si une
+personne référence le même média en version complète et avec un recadrage, la
+version complète est conservée et le recadrage est ignoré. Une personne dont
+la relation avec Benoît Coste reste non résolue est exclue lorsqu'elle n'a
+aucun portrait. La mise en page est bornée à une page par personne.
 
 ## Régénération offline
 

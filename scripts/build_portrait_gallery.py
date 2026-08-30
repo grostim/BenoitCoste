@@ -7,7 +7,7 @@ there is no hand-maintained person list.  Fixture mode keeps CI network-free.
 from __future__ import annotations
 
 import base64
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import hashlib
 import io
 import json
@@ -30,6 +30,7 @@ MONTH_NAMES = {
     "MAY": "mai", "JUN": "juin", "JUL": "juillet", "AUG": "août",
     "SEP": "septembre", "OCT": "octobre", "NOV": "novembre", "DEC": "décembre",
 }
+UNKNOWN_RELATION = "relation non résolue dans la structure Gramps"
 
 
 @dataclass(frozen=True)
@@ -37,6 +38,7 @@ class Portrait:
     data: bytes
     rect: tuple[float, float, float, float] | None
     description: str
+    media_key: str = ""
 
 
 @dataclass(frozen=True)
@@ -223,12 +225,21 @@ def _rect(value: Any) -> tuple[float, float, float, float] | None:
         return None
     if values[2] <= values[0] or values[3] <= values[1]:
         return None
+    if values[0] <= 0 and values[1] <= 0 and values[2] >= 100 and values[3] >= 100:
+        return None
     return values  # type: ignore[return-value]
 
 
+def _media_identity(media: dict[str, Any], handle: str) -> str:
+    for field in ("checksum", "path"):
+        value = str(media.get(field) or "").strip()
+        if value:
+            return f"{field}:{value}"
+    return f"handle:{handle}"
+
+
 def _person_portraits(person: dict[str, Any], media_by_handle: dict[str, dict[str, Any]], media_loader: Callable[[str], bytes]) -> tuple[tuple[Portrait, ...], list[str]]:
-    portraits: list[Portrait] = []
-    errors: list[str] = []
+    candidates: list[tuple[str, dict[str, Any], tuple[float, float, float, float] | None, str]] = []
     seen: set[tuple[str, tuple[float, float, float, float] | None]] = set()
     for media_ref in person.get("media_list") or []:
         handle = _ref(media_ref)
@@ -236,12 +247,31 @@ def _person_portraits(person: dict[str, Any], media_by_handle: dict[str, dict[st
         if not handle or not media or not _portrait_candidate(media):
             continue
         crop = _rect(media_ref.get("rect") if isinstance(media_ref, dict) else None)
-        key = (handle, crop)
+        identity = _media_identity(media, handle)
+        key = (identity, crop)
         if key in seen:
             continue
         seen.add(key)
+        candidates.append((handle, media, crop, identity))
+
+    # If Gramps exposes the same image once in full and once with a face rect,
+    # the complete reference wins for this person.  This also handles duplicate
+    # media objects carrying the same checksum/path.
+    complete_identities = {identity for _handle_value, _media, crop, identity in candidates if crop is None}
+    portraits: list[Portrait] = []
+    errors: list[str] = []
+    for handle, media, crop, identity in candidates:
+        if crop is not None and identity in complete_identities:
+            continue
         try:
-            portraits.append(Portrait(media_loader(handle), crop, str(media.get("desc") or media.get("title") or "Portrait")))
+            portraits.append(
+                Portrait(
+                    media_loader(handle),
+                    crop,
+                    str(media.get("desc") or media.get("title") or "Portrait"),
+                    identity,
+                )
+            )
         except (GrampsApiError, OSError) as error:
             errors.append(f"{person.get('gramps_id', 'person')}: media indisponible ({type(error).__name__})")
     return tuple(portraits), errors
@@ -415,6 +445,27 @@ def _write_portrait(portrait: Portrait, directory: Path) -> Path:
     return path
 
 
+def _portrait_identity(portrait: Portrait) -> str:
+    return portrait.media_key or hashlib.sha256(portrait.data).hexdigest()
+
+
+def _deduplicate_portraits(portraits: Iterable[Portrait]) -> tuple[Portrait, ...]:
+    values = list(portraits)
+    complete = {_portrait_identity(portrait) for portrait in values if portrait.rect is None}
+    result: list[Portrait] = []
+    seen: set[tuple[str, tuple[float, float, float, float] | None]] = set()
+    for portrait in values:
+        identity = _portrait_identity(portrait)
+        if portrait.rect is not None and identity in complete:
+            continue
+        key = (identity, portrait.rect)
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(portrait)
+    return tuple(result)
+
+
 def _image_block(paths: list[str], *, columns: int, height: str) -> str:
     cells: list[str] = []
     for path in paths:
@@ -489,7 +540,11 @@ def build_portrait_gallery(records: Iterable[dict[str, Any]], output_dir: Path, 
     gallery_dir = output_dir / "galerie"
     portrait_dir = gallery_dir / "portraits"
     portrait_dir.mkdir(parents=True, exist_ok=True)
-    typed = [_record(record) for record in records]
+    typed = [
+        replace(record, portraits=_deduplicate_portraits(record.portraits))
+        for record in (_record(value) for value in records)
+        if record.relation != UNKNOWN_RELATION or record.portraits
+    ]
     typed.sort(key=lambda record: (record.relation_rank, record.surname.casefold(), record.first_name.casefold(), record.gramps_id))
     paths_by_person: list[list[Path]] = []
     all_paths: dict[str, Path] = {}

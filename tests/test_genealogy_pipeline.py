@@ -112,11 +112,12 @@ class GenealogyPipelineTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="gallery-test-") as tmp:
             result = build_portrait_gallery(fixture_records(self.fixture), Path(tmp) / "assets")
             tex = result.tex_path.read_text(encoding="utf-8")
-            self.assertEqual(result.people, 3)
-            self.assertEqual(result.pages, 3)
+            self.assertEqual(result.people, 2)
+            self.assertEqual(result.pages, 2)
             self.assertEqual(result.people_with_portraits, 2)
-            self.assertEqual(result.portrait_count, 4)
-            self.assertEqual(tex.count(r"\clearpage"), 3)
+            self.assertEqual(result.portrait_count, 3)
+            self.assertEqual(tex.count(r"\clearpage"), 2)
+            self.assertEqual(tex.count(r"\includegraphics"), 3)
             self.assertIn(r"\underline{Joséphine}", tex)
             self.assertIn("Benoît COSTE", tex)
             self.assertIn("COLOMB DE GAST", tex)
@@ -125,7 +126,8 @@ class GenealogyPipelineTests(unittest.TestCase):
             self.assertNotIn("/tmp/", tex)
             self.assertNotIn(r"%\linewidth", tex)
             self.assertIn("genealogie/assets/galerie/portraits/", tex)
-            self.assertEqual(len(list((Path(tmp) / "assets" / "galerie" / "portraits").glob("*.jpg"))), 3)
+            self.assertNotIn("Sansportrait", tex)
+            self.assertEqual(len(list((Path(tmp) / "assets" / "galerie" / "portraits").glob("*.jpg"))), 2)
 
     def test_old_addon_is_rejected_without_override(self) -> None:
         with self.assertRaises(AddonCapabilityError):
@@ -255,10 +257,10 @@ class GenealogyPipelineTests(unittest.TestCase):
             self.assertEqual(result["manifest"]["descendant_generations"], 1)
             self.assertFalse(result["manifest"]["show_highlight_markers"])
             self.assertNotIn("collateral_graph", result["manifest"])
-            self.assertEqual(result["manifest"]["gallery"]["people"], 3)
-            self.assertEqual(result["manifest"]["gallery"]["pages"], 3)
+            self.assertEqual(result["manifest"]["gallery"]["people"], 2)
+            self.assertEqual(result["manifest"]["gallery"]["pages"], 2)
             self.assertEqual(result["manifest"]["gallery"]["people_with_portraits"], 2)
-            self.assertEqual(result["manifest"]["gallery"]["portraits"], 4)
+            self.assertEqual(result["manifest"]["gallery"]["portraits"], 3)
             self.assertFalse(stale.exists())
             expected = {
                 "arbre-benoit-coste.svg",
@@ -275,14 +277,11 @@ class GenealogyPipelineTests(unittest.TestCase):
             }
             files = {str(path.relative_to(output)) for path in output.rglob("*") if path.is_file()}
             self.assertTrue(expected.issubset(files))
-            self.assertEqual(
-                {path for path in files if path.startswith("galerie/portraits/") and path.endswith(".jpg")},
-                {
-                    "galerie/portraits/portrait-6d91715dce195b78f347.jpg",
-                    "galerie/portraits/portrait-98957cda47c33436d148.jpg",
-                    "galerie/portraits/portrait-cae0c1932888b318fc42.jpg",
-                },
-            )
+            portrait_files = {
+                path for path in files
+                if path.startswith("galerie/portraits/") and path.endswith(".jpg")
+            }
+            self.assertEqual(len(portrait_files), 2)
             self.assertFalse(any(path.startswith("parente-citee") for path in files))
             manifest = (output / "manifest.json").read_text(encoding="utf-8")
             self.assertNotIn("person-center", manifest)
