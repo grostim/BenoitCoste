@@ -6,21 +6,65 @@ fin de `Memoires de Benoit Coste.tex`.
 
 ## Source et périmètre
 
-La régénération locale utilise le rapport Gramps `two_way_fan_chart` avec :
+La régénération utilise le rapport Gramps `two_way_fan_chart` avec :
 
-- la famille centrale configurée dans `report.toml` ;
+- la famille centrale `F0043` et la personne de référence `I0095` ;
 - deux générations ascendantes et une génération descendante ;
 - les portraits autorisés par `publication_safe` ;
-- le tag exact `Cité dans les Mémoires de Benoît Coste` pour le repérage des
-  personnes citées ;
+- le tag exact `Cité dans les Mémoires de Benoît Coste` pour sélectionner les
+  personnages de la galerie ;
 - les marqueurs de tag désactivés dans l'éventail public ;
 - les prénoms d'usage utilisés pour les descendants visibles.
 
-Le tag est résolu par son nom dans Gramps et sert uniquement au contrôle du
-périmètre de publication. Aucun handle technique n'est codé dans le chapitre
-ou dans les dessins publics. Les six citations de `S2212` qui ne permettent
-pas de remonter à une personne restent des cas d'audit et ne sont pas
-rattachées automatiquement.
+Le tag est résolu par son nom dans Gramps et sert de source unique pour la
+liste de la galerie. Aucun handle technique n'est codé dans le chapitre, le
+fragment LaTeX ou les images publiques.
+
+Pour chaque personne, la galerie lit uniquement les faits personnels dont la
+référence d'événement est `Primary` : naissance, décès et professions. Un
+baptême n'est jamais transformé en naissance ; une donnée absente est
+indiquée comme non renseignée. Les relations sont résolues à partir des
+familles, parents et conjoints présents dans Gramps. Si cette structure ne
+suffit pas, le chapitre indique une relation non résolue plutôt que d'inventer
+un rattachement.
+
+## Galerie de portraits
+
+`build_portrait_gallery.py` produit une page par personne taguée, dans l'ordre
+de proximité avec Benoît Coste puis par nom. Chaque fiche contient :
+
+- les prénoms complets, avec le prénom d'usage souligné, puis le NOM ;
+- la relation avec Benoît Coste, formulée sans répéter le nom de la personne
+  (par exemple « Son père ») ;
+- naissance et décès (date et lieu) ;
+- profession(s) attestée(s) dans Gramps ;
+- les portraits disponibles dans les médias Gramps, avec le titre directement
+  sous chaque image, puis la date, l'artiste et la source lorsqu'ils sont
+  renseignés ; les champs Date et Artiste inconnus sont omis ;
+- les citations de la source de l'ouvrage rattachées à la personne, à ses
+  événements ou à ses familles, triées par numéro de page croissant, avec le
+  texte associé lorsque Gramps le fournit.
+
+La profession et les citations de Benoît Coste lui-même sont volontairement
+masquées dans sa fiche : il est le personnage central du document. Cette
+exception ne s'applique à aucune autre personne.
+
+Les médias sont retenus seulement lorsqu'ils sont explicitement décrits comme
+portrait/photo et qu'ils sont réellement des images. Les actes, registres,
+médailles, armoiries, annotations et documents sont exclus. Les rectangles de
+recadrage Gramps sont appliqués avec une marge, puis les images sont converties
+en JPEG sans métadonnées ; plusieurs portraits sont disposés en grille. Les
+fiches utilisent un bandeau bordeaux, des encadrés ivoire pour les faits et un
+monogramme d'initiales lorsqu'aucun portrait n'est disponible. Les localisations
+de citations sont réduites à leur chapitre et leur page ; une localisation
+absente reste explicitement non renseignée. Les phrases de parenté sont
+contextualisées depuis Benoît Coste (par exemple « le mari de sa belle-sœur
+Amélie Colomb » ou « la mère de son épouse Joséphine »), sans modifier les noms
+structurés de Gramps. Un lieu d'événement absent n'est pas imprimé. Si une personne
+référence le même média en version complète et avec un recadrage, la
+version complète est conservée et le recadrage est ignoré. Une personne dont
+la relation avec Benoît Coste reste non résolue est exclue lorsqu'elle n'a
+aucun portrait. La mise en page est bornée à une page par personne.
 
 ## Régénération offline
 
@@ -33,8 +77,9 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/update_genealogy.py \
   --dry-run
 ```
 
-Ce mode valide la configuration, le filtrage public, le SVG et les
-conversions sans écrire dans `genealogie/assets/`.
+Ce mode valide la configuration, le filtrage public, l'éventail, la galerie,
+les recadrages, le fragment LaTeX et les conversions sans écrire dans
+`genealogie/assets/`.
 
 ## Régénération live, uniquement en local
 
@@ -60,14 +105,19 @@ La sortie public-safe comprend :
 - `arbre-benoit-coste.svg` : artefact canonique ;
 - `arbre-benoit-coste.pdf` et `.png` : dérivés du SVG canonique ;
 - `arbre-benoit-coste-a4-overview.*` : vue A4 paysage insérée en pleine page
-  dans le livre via `\includepdf[fitpaper]` ;
-- `arbre-benoit-coste-a4-1.*` à `a4-4.*` : vues vectorielles de détail
-  (artefacts autonomes, non inclus dans le livre) ;
-- `manifest.json` : dimensions, paramètres publics et empreintes SHA-256.
+  dans le livre via `\\includepdf[fitpaper]` ;
+- `arbre-benoit-coste-a4-1.*` à `a4-4.*` : vues vectorielles de détail,
+  autonomes et non incluses dans le livre ;
+- `galerie/galerie.tex` : fragment LaTeX généré ;
+- `galerie/portraits/*.jpg` : portraits nettoyés et recadrés ;
+- `manifest.json` : paramètres publics, statistiques galerie et empreintes
+  SHA-256.
 
 Le schéma relationnel des parentés citées a été retiré définitivement du
 livre et du pipeline : il n'est plus généré, validé ni publié.
 
-Les PDF et PNG doivent toujours être régénérés depuis le SVG validé. Ne jamais
-retoucher manuellement un SVG pour corriger un nom, une date, une filiation ou
-un repère de citation.
+Les PDF et PNG doivent toujours être régénérés depuis les SVG validés. Ne
+jamais retoucher manuellement un SVG, un portrait ou `galerie.tex` pour
+corriger un nom, une date, une filiation ou une relation. Pour mettre la
+galerie à jour, compléter Gramps avec le tag ou le média voulu, puis relancer
+la commande live ci-dessus.

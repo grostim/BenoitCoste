@@ -37,6 +37,7 @@ REPO_ROOT = SCRIPT_DIR.parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
+from build_portrait_gallery import build_portrait_gallery, collect_live_records, fixture_records  # noqa: E402
 from check_genealogy_assets import AssetValidationError, inspect_svg, validate_svg_file  # noqa: E402
 from gramps_api import GrampsApiClient, GrampsApiError, client_from_external_env  # noqa: E402
 
@@ -784,17 +785,17 @@ def _atomic_write(target: Path, data: bytes) -> None:
 
 
 def _safe_manifest(
-    output_dir: Path,
     config: dict[str, Any],
     files: list[Path],
     report_version: str,
     *,
+    manifest_root: Path,
     canonical_name: str,
 ) -> dict[str, Any]:
     checksums = {
-        path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+        str(path.relative_to(manifest_root)): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in sorted(files)
-        if path.exists() and path.suffix.lower() in {".svg", ".pdf", ".png"}
+        if path.exists()
     }
     return {
         "schema": 1,
@@ -849,12 +850,15 @@ def build_assets(
             fan_svg = (Path(fixture["fan_svg_path"]).parent / Path(fixture["fan_svg_path"]).name).read_bytes()
         else:
             raise PipelineError("fixture has no fan_svg or fan_svg_path")
+        gallery_records = fixture_records(fixture)
+        gallery_errors: tuple[str, ...] = ()
         report_version = str(report_info.get("version", "fixture"))
     else:
         if client is None:
             raise PipelineError("a live client is required outside fixture mode")
         ensure_addon_capability(report_info)
         fan_svg = run_remote_report(client, config, report_info)
+        gallery_records, gallery_errors = collect_live_records(client, config)
         options = report_options(config)
         report_version = str(report_info.get("version", "unknown"))
     try:
@@ -906,22 +910,41 @@ def build_assets(
             stem = svg.with_suffix("")
             convert_svg(svg, stem.with_suffix(".pdf"), "pdf")
             convert_svg(svg, stem.with_suffix(".png"), "png")
-        # DOT is a source artifact, but the versioned public package only
-        # retains a handle-free DOT if the configuration explicitly asks for it.
-        manifest_files = [path for path in stage.iterdir() if path.suffix.lower() in {".svg", ".pdf", ".png"}]
+        gallery = build_portrait_gallery(
+            gallery_records,
+            stage,
+            portrait_errors=gallery_errors,
+            central_person_id=str(config["gramps"].get("center_person") or ""),
+        )
+        manifest_files = [
+            path
+            for path in stage.rglob("*")
+            if path.is_file() and path.suffix.lower() in {".svg", ".pdf", ".png", ".tex", ".jpg", ".jpeg"}
+        ]
         manifest = _safe_manifest(
-            output_dir,
             config,
             manifest_files,
             report_version,
+            manifest_root=stage,
             canonical_name=fan_path.name,
         )
+        manifest["gallery"] = {
+            "people": gallery.people,
+            "pages": gallery.pages,
+            "people_with_portraits": gallery.people_with_portraits,
+            "portraits": gallery.portrait_count,
+            "private_people": gallery.private_people,
+            "portrait_errors": len(gallery.portrait_errors),
+        }
         _atomic_write(stage / "manifest.json", (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
         output_dir.mkdir(parents=True, exist_ok=True)
+        gallery_target = output_dir / "galerie"
+        if gallery_target.exists():
+            shutil.rmtree(gallery_target)
         for path in manifest_files:
-            _atomic_copy(path, output_dir / path.name)
+            _atomic_copy(path, output_dir / path.relative_to(stage))
         _atomic_copy(stage / "manifest.json", output_dir / "manifest.json")
-        return {"output_dir": str(output_dir), "files": sorted(path.name for path in manifest_files), "manifest": manifest}
+        return {"output_dir": str(output_dir), "files": sorted(str(path.relative_to(stage)) for path in manifest_files), "manifest": manifest}
     finally:
         shutil.rmtree(stage, ignore_errors=True)
 

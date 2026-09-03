@@ -4,6 +4,7 @@
 [gramps]
 report_id = "two_way_fan_chart"
 center_family = "F0043"
+center_person = "I0095"
 source_gramps_id = "S2212"
 highlight_tag = "Cité dans les Mémoires de Benoît Coste"
 
