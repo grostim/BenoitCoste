@@ -138,6 +138,29 @@ class RelationshipResolver:
         article = "la" if gender == 0 else "le"
         return f"{article} {relation}"
 
+    @staticmethod
+    def _extended_uncle_label(generations: int, gender: int | None) -> str:
+        base = "tante" if gender == 0 else "oncle"
+        if generations == 1:
+            return "la tante" if gender == 0 else "l'oncle"
+        if generations == 2:
+            relation = f"grand-{base}"
+        else:
+            relation = f"{'arrière-' * (generations - 2)}grand-{base}"
+        article = "la" if gender == 0 else "le"
+        return f"{article} {relation}"
+
+    @staticmethod
+    def _extended_nephew_label(generations: int, gender: int | None) -> str:
+        base = "nièce" if gender == 0 else "neveu"
+        if generations == 1:
+            relation = base
+        else:
+            prefix = "petite-" if gender == 0 else "petit-"
+            relation = f"{'arrière-' * (generations - 2)}{prefix}{base}"
+        article = "la" if gender == 0 else "le"
+        return f"{article} {relation}"
+
     def _blood_relation(self, origin: str, target: str) -> Relationship | None:
         if origin == target:
             return Relationship("lui-même", 0)
@@ -170,6 +193,12 @@ class RelationshipResolver:
         if up == 1 and down == 2:
             label = self._gendered("le neveu", "la nièce", target)
             return Relationship(label, 3)
+        if up >= 3 and down == 1:
+            label = self._extended_uncle_label(up - 1, self._person_gender(target))
+            return Relationship(label, up + down)
+        if up == 1 and down >= 3:
+            label = self._extended_nephew_label(down - 1, self._person_gender(target))
+            return Relationship(label, up + down)
         if up >= 2 and down >= 2:
             degree = min(up, down) - 1
             if degree == 1:

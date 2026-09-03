@@ -122,6 +122,37 @@ class GenealogyPipelineTests(unittest.TestCase):
         )
         self.assertEqual(resolver.resolve("unknown").label, "relation non résolue dans la structure Gramps")
 
+    def test_relationship_resolver_handles_unequal_collateral_generations(self) -> None:
+        def person(handle: str, gid: str, gender: int) -> dict[str, object]:
+            return {
+                "handle": handle,
+                "gramps_id": gid,
+                "gender": gender,
+                "primary_name": {"first_name": gid, "surname_list": [{"surname": "Test"}]},
+            }
+
+        people = [
+            person("focal", "I0095", 1),
+            person("parent", "I0013", 1),
+            person("grandparent", "I0014", 1),
+            person("great-grandparent", "I0015", 1),
+            person("great-uncle", "I0016", 1),
+            person("sibling", "I0017", 0),
+            person("sibling-child", "I0018", 1),
+            person("grandnephew", "I0019", 1),
+        ]
+        families = [
+            {"father_handle": "great-grandparent", "mother_handle": "ggp-spouse", "child_ref_list": [{"ref": "grandparent"}, {"ref": "great-uncle"}]},
+            {"father_handle": "grandparent", "mother_handle": "gp-spouse", "child_ref_list": [{"ref": "parent"}]},
+            {"father_handle": "parent", "mother_handle": "parent-spouse", "child_ref_list": [{"ref": "focal"}, {"ref": "sibling"}]},
+            {"father_handle": "sibling", "mother_handle": "sibling-spouse", "child_ref_list": [{"ref": "sibling-child"}]},
+            {"father_handle": "sibling-child", "mother_handle": "sibling-child-spouse", "child_ref_list": [{"ref": "grandnephew"}]},
+        ]
+        resolver = RelationshipResolver(people, families, "focal")
+
+        self.assertEqual(resolver.resolve("great-uncle").label, "son grand-oncle I0016 Test")
+        self.assertEqual(resolver.resolve("grandnephew").label, "son petit-neveu I0019 Test")
+
     def test_gallery_formats_usage_name_and_one_page_per_person(self) -> None:
         with tempfile.TemporaryDirectory(prefix="gallery-test-") as tmp:
             result = build_portrait_gallery(fixture_records(self.fixture), Path(tmp) / "assets")
