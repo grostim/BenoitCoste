@@ -25,7 +25,7 @@ Les documents sont automatiquement compilés et mis à disposition dans les troi
 
 Une annexe distincte du manuscrit présente la généalogie de Benoît Coste et
 Joséphine Colomb de Gast. Elle est explicitement signalée dans le PDF comme
-**« Ajout du transcripteur — hors document original »** et n'altère pas le
+**« Note généalogique — hors document original »** et n'altère pas le
 contenu des trente-huit chapitres transcrits.
 
 Le pipeline local produit un éventail de deux générations ascendantes et d'une

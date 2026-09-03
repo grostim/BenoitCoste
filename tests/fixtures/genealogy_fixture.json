@@ -23,10 +23,18 @@
       "birth": ["17 octobre 1712", "Lyon"],
       "death": ["8 février 1789", "Lyon"],
       "occupations": ["Marchand de soie", "Échevin"],
+      "citations": [
+        {"source_title": "Benoît Coste — Mes souvenirs de soixante ans", "page": "Chapitre 1 — Page 2 — enfance"},
+        {"source_title": "Benoît Coste — Mes souvenirs de soixante ans", "page": "Page 40 — commerce"}
+      ],
       "portraits": [
         {
           "data_base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAwUlEQVR4nO2XwQmAMAxFoziHZ4dwEk+O4Qgdw5MTOIJDOI6HShEK6U+qECT/5KU8X6XNt9nHkbQJ/aJe26pXVsbBDv4fuFOsGZb76K90xId5E18GDX6BJB4T/A3QrUaoRLROx5tgkCpil8EiKs4ugBVUkG3yHKt1Y3hpe8aVujGMtD1jBzv4M/AZ0DnDhJmS9oypWpovBSaNqUK62IHKxgo20rygrRaxwb6HfmOQjbdMQb1NySfmt706j/+YO9jBz1yNSzL5VZHd9wAAAABJRU5ErkJggg==",
-          "description": "Portrait de Benoît Coste"
+          "description": "Portrait de Benoît Coste",
+          "artwork_name": "Portrait de Benoît Coste",
+          "artwork_date": "1735",
+          "artist": "Artiste de fixture",
+          "source": "Collection de fixture"
         }
       ]
     },
@@ -42,6 +50,9 @@
       "birth": ["11 mai 1787", "Saint-Chamond"],
       "death": ["12 mars 1855", "Saint-Étienne"],
       "occupations": [],
+      "citations": [
+        {"source_title": "Benoît Coste — Mes souvenirs de soixante ans", "page": "Chapitre 30 — Page 244 — belle-mère"}
+      ],
       "portraits": [
         {
           "data_base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAAwUlEQVR4nO2XwQmAMAxFoziHZ4dwEk+O4Qgdw5MTOIJDOI6HShEK6U+qECT/5KU8X6XNt9nHkbQJ/aJe26pXVsbBDv4fuFOsGZb76K90xId5E18GDX6BJB4T/A3QrUaoRLROx5tgkCpil8EiKs4ugBVUkG3yHKt1Y3hpe8aVujGMtD1jBzv4M/AZ0DnDhJmS9oypWpovBSaNqUK62IHKxgo20rygrRaxwb6HfmOQjbdMQb1NySfmt706j/+YO9jBz1yNSzL5VZHd9wAAAABJRU5ErkJggg==",
@@ -59,7 +70,11 @@
         },
         {
           "data_base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAIAAAADnC86AAAApklEQVR4nO2WMQ6AIAxF0Tg5eyYP4Tk8hrOndHZ2c4CE/v4GaUw7Qv9/fAiBYT231KPGLtQAB/iX4InQHMucjezX3RBc8sopfAXoVleoRBsKxu3wZhmsouISAUxQQaHLe0zHReT+Ehvjiib+Egc4wM3AxBOrMvGXOJlD1+UuEydDaFEoJybYiATaahUbbEbPGLTDl6j43r6mX/+rLZiyvF6nAAeYrwfzTTPkooOt5AAAAABJRU5ErkJggg==",
-          "description": "Portrait distinct de Joséphine"
+          "description": "Portrait distinct de Joséphine",
+          "artwork_name": "Portrait distinct de Joséphine",
+          "artwork_date": "1840",
+          "artist": "Artiste distinct",
+          "source": "Collection familiale"
         }
       ]
     },
@@ -69,6 +84,20 @@
       "call_name": "",
       "surname": "Sansportrait",
       "gender": 0,
+      "private": false,
+      "relation": "une cousine",
+      "relation_rank": 5,
+      "birth": ["1900", ""],
+      "death": null,
+      "occupations": [],
+      "portraits": []
+    },
+    {
+      "gramps_id": "I1000",
+      "first_name": "Personne",
+      "call_name": "",
+      "surname": "Sanslien",
+      "gender": 1,
       "private": false,
       "relation": "relation non résolue dans la structure Gramps",
       "relation_rank": 99,

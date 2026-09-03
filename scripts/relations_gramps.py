@@ -48,6 +48,24 @@ def _display_name(person: dict[str, Any]) -> str:
     return " ".join(part for part in (first, surname) if part) or "Personne sans nom"
 
 
+def _given_name_only(person: dict[str, Any]) -> str:
+    name = person.get("primary_name") or {}
+    given = str(name.get("call") or name.get("first_name") or "").strip()
+    return given.split()[0] if given else "Personne sans nom"
+
+
+def _relation_name(person: dict[str, Any]) -> str:
+    """Use a concise common-name form inside a relationship sentence."""
+    name = person.get("primary_name") or {}
+    surname_list = name.get("surname_list") or []
+    surname = ""
+    if surname_list and isinstance(surname_list[0], dict):
+        surname = str(surname_list[0].get("surname") or "").strip()
+    if surname.startswith("De "):
+        surname = surname[3:]
+    return " ".join(part for part in (_given_name_only(person), surname) if part)
+
+
 def _family_children(family: dict[str, Any]) -> list[str]:
     values = family.get("child_ref_list") or family.get("children") or family.get("child_handles") or []
     if isinstance(values, dict):
@@ -165,22 +183,70 @@ class RelationshipResolver:
             return Relationship("le " + cousin if self._person_gender(target) != 0 else "la " + cousin, up + down)
         return None
 
+    @staticmethod
+    def _possessive_label(label: str) -> str:
+        if label.startswith("la "):
+            return "sa " + label[3:]
+        if label.startswith("le "):
+            return "son " + label[3:]
+        if label.startswith("l'"):
+            return "son " + label[2:]
+        return label
+
+    @staticmethod
+    def _prepend_de(prefix: str, relation: str) -> str:
+        if relation.startswith("le "):
+            return f"{prefix} du {relation[3:]}"
+        if relation.startswith("la "):
+            return f"{prefix} de la {relation[3:]}"
+        if relation.startswith("l'"):
+            return f"{prefix} de l'{relation[2:]}"
+        return f"{prefix} de {relation}"
+
+    def _partner_word(self, handle: str) -> str:
+        gender = self._person_gender(handle)
+        if gender == 0:
+            return "l'épouse"
+        if gender == 1:
+            return "le mari"
+        return "le conjoint"
+
+    def _focal_spouse_anchor(self, handle: str) -> str:
+        gender = self._person_gender(handle)
+        if gender == 0:
+            article = "son épouse"
+        elif gender == 1:
+            article = "son époux"
+        else:
+            article = "son conjoint"
+        return f"{article} {_given_name_only(self.people.get(handle, {}))}"
+
+    def _relation_phrase(self, origin: str, target: str, blood: Relationship) -> str:
+        """Return a named phrase from Benoît's point of view."""
+        target_name = _relation_name(self.people.get(target, {}))
+        if origin == self.focal_handle:
+            return f"{self._possessive_label(blood.label)} {target_name}"
+        if blood.label == "la sœur":
+            return f"sa belle-sœur {target_name}"
+        if blood.label == "le frère":
+            return f"son beau-frère {target_name}"
+        return f"{blood.label} de {self._focal_spouse_anchor(origin)}"
+
     def _in_law_relation(self, target: str) -> Relationship | None:
         for spouse in sorted(self.spouses.get(target, set())):
             blood = self._blood_relation(self.focal_handle, spouse)
             if blood and blood.label != "lui-même":
-                return Relationship(f"conjoint(e) de {blood.label}", blood.rank + 1)
+                relation = self._relation_phrase(self.focal_handle, spouse, blood)
+                return Relationship(self._prepend_de(self._partner_word(target), relation), blood.rank + 1)
         for focal_spouse in sorted(self.spouses.get(self.focal_handle, set())):
             blood = self._blood_relation(focal_spouse, target)
             if blood and blood.label != "lui-même":
-                return Relationship(f"{blood.label} de {_display_name(self.people.get(focal_spouse, {}))} (par alliance)", blood.rank + 1)
+                return Relationship(self._relation_phrase(focal_spouse, target, blood), blood.rank + 1)
             for target_spouse in sorted(self.spouses.get(target, set())):
                 spouse_blood = self._blood_relation(focal_spouse, target_spouse)
                 if spouse_blood and spouse_blood.label != "lui-même":
-                    return Relationship(
-                        f"conjoint(e) de {spouse_blood.label} de {_display_name(self.people.get(focal_spouse, {}))} (par alliance)",
-                        spouse_blood.rank + 2,
-                    )
+                    relation = self._relation_phrase(focal_spouse, target_spouse, spouse_blood)
+                    return Relationship(self._prepend_de(self._partner_word(target), relation), spouse_blood.rank + 2)
         return None
 
     def resolve(self, target_handle: str) -> Relationship:
@@ -188,10 +254,11 @@ class RelationshipResolver:
             return Relationship("lui-même", 0)
         target_gender = self._person_gender(target_handle)
         if target_handle in self.spouses.get(self.focal_handle, set()):
-            return Relationship("l'épouse" if target_gender == 0 else "l'époux", 1)
+            partner = "son épouse" if target_gender == 0 else "son époux" if target_gender == 1 else "son conjoint"
+            return Relationship(f"{partner} {_given_name_only(self.people.get(target_handle, {}))}", 1)
         blood = self._blood_relation(self.focal_handle, target_handle)
         if blood:
-            return blood
+            return Relationship(self._relation_phrase(self.focal_handle, target_handle, blood), blood.rank)
         in_law = self._in_law_relation(target_handle)
         if in_law:
             return in_law

@@ -34,17 +34,34 @@ un rattachement.
 de proximité avec Benoît Coste puis par nom. Chaque fiche contient :
 
 - les prénoms complets, avec le prénom d'usage souligné, puis le NOM ;
-- la relation avec Benoît Coste ;
+- la relation avec Benoît Coste, formulée sans répéter le nom de la personne
+  (par exemple « Son père ») ;
 - naissance et décès (date et lieu) ;
 - profession(s) attestée(s) dans Gramps ;
-- les portraits disponibles dans les médias Gramps.
+- les portraits disponibles dans les médias Gramps, avec le titre directement
+  sous chaque image, puis la date, l'artiste et la source lorsqu'ils sont
+  renseignés ; les champs Date et Artiste inconnus sont omis ;
+- les citations de la source de l'ouvrage rattachées à la personne, à ses
+  événements ou à ses familles, triées par numéro de page croissant, avec le
+  texte associé lorsque Gramps le fournit.
+
+La profession et les citations de Benoît Coste lui-même sont volontairement
+masquées dans sa fiche : il est le personnage central du document. Cette
+exception ne s'applique à aucune autre personne.
 
 Les médias sont retenus seulement lorsqu'ils sont explicitement décrits comme
 portrait/photo et qu'ils sont réellement des images. Les actes, registres,
 médailles, armoiries, annotations et documents sont exclus. Les rectangles de
 recadrage Gramps sont appliqués avec une marge, puis les images sont converties
-en JPEG sans métadonnées ; plusieurs portraits sont disposés en grille. Si une
-personne référence le même média en version complète et avec un recadrage, la
+en JPEG sans métadonnées ; plusieurs portraits sont disposés en grille. Les
+fiches utilisent un bandeau bordeaux, des encadrés ivoire pour les faits et un
+monogramme d'initiales lorsqu'aucun portrait n'est disponible. Les localisations
+de citations sont réduites à leur chapitre et leur page ; une localisation
+absente reste explicitement non renseignée. Les phrases de parenté sont
+contextualisées depuis Benoît Coste (par exemple « le mari de sa belle-sœur
+Amélie Colomb » ou « la mère de son épouse Joséphine »), sans modifier les noms
+structurés de Gramps. Un lieu d'événement absent n'est pas imprimé. Si une personne
+référence le même média en version complète et avec un recadrage, la
 version complète est conservée et le recadrage est ignoré. Une personne dont
 la relation avec Benoît Coste reste non résolue est exclue lorsqu'elle n'a
 aucun portrait. La mise en page est bornée à une page par personne.

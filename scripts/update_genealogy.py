@@ -910,7 +910,12 @@ def build_assets(
             stem = svg.with_suffix("")
             convert_svg(svg, stem.with_suffix(".pdf"), "pdf")
             convert_svg(svg, stem.with_suffix(".png"), "png")
-        gallery = build_portrait_gallery(gallery_records, stage, portrait_errors=gallery_errors)
+        gallery = build_portrait_gallery(
+            gallery_records,
+            stage,
+            portrait_errors=gallery_errors,
+            central_person_id=str(config["gramps"].get("center_person") or ""),
+        )
         manifest_files = [
             path
             for path in stage.rglob("*")
