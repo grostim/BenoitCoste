@@ -5,6 +5,8 @@
 
 Projet de transcription intégrale et de mise en page sous **LaTeX** de l'ouvrage <u>« Mes souvenirs de soixante ans »</u>, mémoires manuscrites et dactylographiées de **Benoît Coste** (1781–1845), négociant et notable lyonnais, témoin privilégié de la Révolution française, du Siège de Lyon (1793), du Concordat, de l'Empire et de la Restauration.
 
+> **Projet jumeau** de [grostim/FelixBerloty](https://github.com/grostim/FelixBerloty) et [grostim/HistoireOuroux](https://github.com/grostim/HistoireOuroux) — mêmes principes éditoriaux, même pipeline de publication.
+
 ---
 
 ## 📥 Téléchargements (Dernière version à jour)
