@@ -23,6 +23,20 @@ Les documents sont automatiquement compilés et mis à disposition dans les troi
 
 ---
 
+## Source complémentaire
+
+Le PDF [`Benoît Coste, Totalité`](./Originaux/Benoît%20Coste,%20Totalité.pdf)
+est conservé avec les originaux. Cette transcription alternative complète le
+texte de base : introduction de l'auteur, présentation des cinq époques,
+récits abrégés et détails manquants. Les passages développés remplacent les
+résumés correspondants. Les 38 chapitres des fascicules sont conservés.
+
+Le [relevé des restitutions](./COMPLEMENTS_TRANSCRIPTION.md) indique les
+pages utilisées et les choix de collation. Les préfaces et commentaires
+modernes du PDF complémentaire restent distincts du récit de Benoît Coste.
+
+---
+
 ## 🌳 Annexe généalogique
 
 Une annexe distincte du manuscrit présente la généalogie de Benoît Coste et
@@ -81,14 +95,16 @@ BenoitCoste/
 ├── .github/
 │   └── workflows/
 │       └── ci-release.yml          # Pipeline CI/CD (compilation LaTeX, génération multi-format & release)
-├── Originaux/                      # Scans haute fidélité des fascicules originaux (Ch 1 à Ch 38)
+├── Originaux/                      # Scans des fascicules et transcription alternative
 │   ├── Ch 1.pdf
 │   ├── ...
-│   └── Ch 38.pdf
+│   ├── Ch 38.pdf
+│   └── Benoît Coste, Totalité.pdf
 ├── Memoires de Benoit Coste.tex   # Source LaTeX principal du document
 ├── genealogie/                     # Chapitre et configuration de régénération
 ├── scripts/                        # Audit, génération et contrôles public-safe
 ├── tests/                          # Fixtures et tests offline
+├── COMPLEMENTS_TRANSCRIPTION.md    # Relevé des restitutions et pages sources
 ├── CONVENTIONS_TRANSCRIPTION.md    # Guide des conventions éditoriales et typographiques
 ├── README.md                       # Présentation du projet et liens de téléchargement
 └── .gitignore                      # Exclusion des fichiers temporaires LaTeX

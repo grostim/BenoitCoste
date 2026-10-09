@@ -85,14 +85,14 @@ Le document utilise la classe `report` avec les packages suivants :
 - Utiliser la commande standard `\footnote{Texte de la note. (Note de l'auteur)}`.
 - Si la note originale précise une mention d'auteur, la reproduire fidèlement : `(Note de l'auteur)` ou `(NOTE DE L'AUTEUR)`.
 
-### 3.5 Interventions et résumés éditoriaux
-- Les passages résumés ou les ajouts contextuels introduits par le premier transcripteur historique du tapuscrit sont mis en évidence par un décalage de marge (environnement `quote`), en italique et entre parenthèses :
-  ```latex
-  \begin{quote}
-  \textit{(Après le départ de M. Satin, Benoît Coste est confié à un Sulpicien, M. Molin...)}
-  \end{quote}
-  ```
-- Les coupures ou omissions sont signalées par `(...)` ou `...... (...)`.
+### 3.5 Source complémentaire et interventions éditoriales
+- La transcription alternative est conservée dans `Originaux/Benoît Coste, Totalité.pdf` ; les scans des 38 fascicules restent la source de base.
+- Les passages de Benoît Coste plus développés dans cette source remplacent les résumés ou passages abrégés du premier tapuscrit. L'introduction de l'auteur et son plan en cinq époques sont rétablis avant la première époque.
+- Conserver les 38 chapitres des fascicules : les limites des chapitres 1 à 4 diffèrent parfois dans la transcription alternative. Une différence de découpage ne justifie pas de répéter un passage.
+- Préserver les informations et notes déjà présentes dans la source de base. Vérifier les écarts dans leur contexte : une note déplacée en bas de page du PDF ne constitue pas un complément nouveau.
+- Les préfaces des éditeurs, gloses modernes, identifications généalogiques, légendes et illustrations de la transcription alternative ne sont pas des mots de Benoît Coste et ne sont pas incorporées à son récit.
+- Les ajouts importants portent un commentaire LaTeX indiquant les pages de cette source. Le relevé des restitutions figure dans `COMPLEMENTS_TRANSCRIPTION.md`.
+- Si une lacune ne peut pas être rétablie, conserver son signalement ; ne pas reconstituer un passage de mémoire. Cette collation de deux transcriptions ne constitue pas une vérification directe du manuscrit autographe.
 
 ### 3.6 Prise en compte des corrections manuscrites
 - Les documents originaux combinent texte dactylographié et corrections manuscrites (mots barrés, ajouts interlinéaires ou marginaux).
