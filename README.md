@@ -44,6 +44,13 @@ Le [relevé des restitutions](./COMPLEMENTS_TRANSCRIPTION.md) indique les
 pages utilisées et les choix de collation. Les préfaces et commentaires
 modernes du PDF complémentaire restent distincts du récit de Benoît Coste.
 
+Le recueil de documents annexes collationnés par Jacques Lépine est conservé
+dans [`Recueil autour de Benoit Coste1.pdf`](./Originaux/Recueil%20autour%20de%20Benoit%20Coste1.pdf).
+Après la note du transcripteur et avant l'introduction de l'auteur figurent,
+dans l'ordre chronologique, le préambule de la version résumée de Léon Peillon
+(printemps 1987), l'avant-propos de Michel de Viviès et Marie-Madeleine
+Plancher-Coste (mars 2009), puis le préambule de Jacques Lépine (15 avril 2023).
+
 ---
 
 ## 🌳 Annexe généalogique
@@ -110,6 +117,7 @@ BenoitCoste/
 │   │   ├── ...
 │   │   └── Ch 38.pdf
 │   ├── Transcription Jacques Lépine 2023.pdf
+│   ├── Recueil autour de Benoit Coste1.pdf
 │   └── Version manuscrite. source Famille Berloty Boffard/
 │       ├── Tome 01 - 1781-1800/
 │       ├── ...
