@@ -19,9 +19,16 @@ de Benoît Coste, dans l'ordre chronologique. Ils restent distincts de son réci
 
 | Texte | Source conservée | Pages du fichier PDF |
 | --- | --- | --- |
+| Préambule de Jean Coste, Hauteville, 23 septembre 1949 | `Originaux/Recueil autour de Benoit Coste1.pdf`, documents annexes collationnés par Jacques Lépine | 39 (pagination imprimée 37 ; page 1 du texte de Jean Coste) |
 | Préambule de la version résumée de Léon Peillon, printemps 1987 | `Originaux/Recueil autour de Benoit Coste1.pdf`, documents annexes collationnés par Jacques Lépine | 76–79 (pagination imprimée 74–77) |
 | Avant-propos de Michel de Viviès et Marie-Madeleine Plancher-Coste, Lyon, mars 2009 | `Originaux/Transcription Jacques Lépine 2023.pdf`, anciennement `BenoitCoste Totalité.pdf` | 5–6 |
 | Préambule de Jacques Lépine, 15 avril 2023 | `Originaux/Transcription Jacques Lépine 2023.pdf` | 3–4 (pagination imprimée 3 et 5) |
+
+Les introductions des préfaces de Jean Coste, Léon Peillon, Michel de Viviès et
+Marie-Madeleine Plancher-Coste, et Jacques Lépine portent des notes de filiation
+fournies par Timothée Gros. Elles sont identifiées comme notes du transcripteur,
+avec noms en casse usuelle, accents et flèches entre générations. Pour Léon
+Peillon, la filiation est celle de son épouse Jacqueline Berloty.
 
 La correction non signée relative à la présence de François Coste au décès de
 son père est conservée en note, avec attribution au recueil, sans la confondre
