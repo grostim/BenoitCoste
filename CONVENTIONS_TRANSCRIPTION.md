@@ -9,6 +9,7 @@ Ce document consigne l'ensemble des règles éditoriales, typographiques, techni
 ### 1.1 Dépôt Git
 - Le projet est versionné sous Git dans le répertoire racine.
 - Les fichiers sources originaux sont conservés dans `Originaux/`. Les 38 scans du tapuscrit sont classés dans `Version dactylographiée - source Grosbois/` ; la transcription complémentaire est nommée `Transcription Jacques Lépine 2023.pdf`.
+- Les scans de la copie manuscrite Berloty Boffard sont classés dans `Originaux/Version manuscrite. source Famille Berloty Boffard/`, par tome et numéro de scan. Ce numéro exprime l’ordre de lecture et ne remplace pas la pagination manuscrite. L’inventaire conserve les noms d’origine et les correspondances des PDF redondants ; les variantes annotées et les repères sont distincts des scans de référence.
 - Le document principal est `Memoires de Benoit Coste.tex`.
 - Les fichiers auxiliaires LaTeX (`*.aux`, `*.log`, `*.toc`, etc.) sont exclus via `.gitignore`.
 

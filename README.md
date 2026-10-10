@@ -34,6 +34,12 @@ texte de base : introduction de l'auteur, présentation des cinq époques,
 récits abrégés et détails manquants. Les passages développés remplacent les
 résumés correspondants. Les 38 chapitres des fascicules sont conservés.
 
+Les scans de la copie manuscrite sont classés dans
+[`Version manuscrite. source Famille Berloty Boffard`](./Originaux/Version%20manuscrite.%20source%20Famille%20Berloty%20Boffard/README.md),
+par tome et ordre de lecture. L’inventaire permet de retrouver les anciens noms
+et les pages des PDF regroupant les mêmes scans. Les documents associés, variantes
+et signalements de lacunes sont conservés avec cette source.
+
 Le [relevé des restitutions](./COMPLEMENTS_TRANSCRIPTION.md) indique les
 pages utilisées et les choix de collation. Les préfaces et commentaires
 modernes du PDF complémentaire restent distincts du récit de Benoît Coste.
@@ -103,7 +109,15 @@ BenoitCoste/
 │   │   ├── Ch 1.pdf
 │   │   ├── ...
 │   │   └── Ch 38.pdf
-│   └── Transcription Jacques Lépine 2023.pdf
+│   ├── Transcription Jacques Lépine 2023.pdf
+│   └── Version manuscrite. source Famille Berloty Boffard/
+│       ├── Tome 01 - 1781-1800/
+│       ├── ...
+│       ├── Tome 05 - 1831-1840/
+│       ├── Documents associés/
+│       ├── INVENTAIRE.csv
+│       ├── CORRESPONDANCE_PDF.csv
+│       └── README.md
 ├── Memoires de Benoit Coste.tex   # Source LaTeX principal du document
 ├── genealogie/                     # Chapitre et configuration de régénération
 ├── scripts/                        # Audit, génération et contrôles public-safe
