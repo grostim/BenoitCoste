@@ -12,6 +12,33 @@ texte de base, ses notes et l'annexe généalogique sont conservés.
 
 ## Restitutions
 
+### Préambules des relecteurs et compilateurs
+
+Ces textes sont reproduits après la note du transcripteur, avant l'introduction
+de Benoît Coste, dans l'ordre chronologique. Ils restent distincts de son récit.
+
+| Texte | Source conservée | Pages du fichier PDF |
+| --- | --- | --- |
+| Préambule de la version résumée de Léon Peillon, printemps 1987 | `Originaux/Recueil autour de Benoit Coste1.pdf`, documents annexes collationnés par Jacques Lépine | 76–79 (pagination imprimée 74–77) |
+| Avant-propos de Michel de Viviès et Marie-Madeleine Plancher-Coste, Lyon, mars 2009 | `Originaux/Transcription Jacques Lépine 2023.pdf`, anciennement `BenoitCoste Totalité.pdf` | 5–6 |
+| Préambule de Jacques Lépine, 15 avril 2023 | `Originaux/Transcription Jacques Lépine 2023.pdf` | 3–4 (pagination imprimée 3 et 5) |
+
+La correction non signée relative à la présence de François Coste au décès de
+son père est conservée en note, avec attribution au recueil, sans la confondre
+avec les mots de Léon Peillon. La date du retour du manuscrit du Canada est bien
+**1846** sur l'image de la page 78 du fichier ; la couche de texte du PDF donne
+à tort 1841. La typographie est harmonisée avec l'édition (casse des noms,
+accents, guillemets, ligatures et césures de fin de ligne), sans modifier les
+appréciations des relecteurs. Les noms de l'avant-propos de 2009 suivent son
+intitulé : Michel de Viviès et Marie-Madeleine Plancher-Coste.
+
+Les indications d'édition (italiques dans la table des matières de 2009,
+surlignage, couleur rouge et renvois de Jacques Lépine) concernent leurs
+documents sources. Une introduction le précise, notamment parce que
+l'avant-propos « ci-après » de Jacques Lépine le précède dans la présente édition.
+
+### Texte de Benoît Coste
+
 | Emplacement | Contenu rétabli ou développé | Pages sources |
 | --- | --- | --- |
 | Page de titre | Dates, sous-titre, destination familiale de l’ouvrage et deux épigraphes latines | 1 |
