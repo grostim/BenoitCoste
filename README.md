@@ -47,7 +47,8 @@ modernes du PDF complémentaire restent distincts du récit de Benoît Coste.
 Le recueil de documents annexes collationnés par Jacques Lépine est conservé
 dans [`Recueil autour de Benoit Coste1.pdf`](./Originaux/Recueil%20autour%20de%20Benoit%20Coste1.pdf).
 Après la note du transcripteur et avant l'introduction de l'auteur figurent,
-dans l'ordre chronologique, le préambule de la version résumée de Léon Peillon
+dans l'ordre chronologique, le préambule de Jean Coste (23 septembre 1949),
+le préambule de la version résumée de Léon Peillon
 (printemps 1987), l'avant-propos de Michel de Viviès et Marie-Madeleine
 Plancher-Coste (mars 2009), puis le préambule de Jacques Lépine (15 avril 2023).
 
