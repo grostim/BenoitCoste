@@ -23,9 +23,12 @@ Les documents sont automatiquement compilés et mis à disposition dans les troi
 
 ---
 
-## Source complémentaire
+## Sources originales et transcription complémentaire
 
-Le PDF [`Benoît Coste, Totalité`](./Originaux/Benoît%20Coste,%20Totalité.pdf)
+Les 38 scans de la version dactylographiée ayant servi à la transcription
+sont classés dans `Originaux/Version dactylographiée - source Grosbois/`.
+
+Le PDF [`Transcription Jacques Lépine 2023`](./Originaux/Transcription%20Jacques%20Lépine%202023.pdf)
 est conservé avec les originaux. Cette transcription alternative complète le
 texte de base : introduction de l'auteur, présentation des cinq époques,
 récits abrégés et détails manquants. Les passages développés remplacent les
@@ -96,10 +99,11 @@ BenoitCoste/
 │   └── workflows/
 │       └── ci-release.yml          # Pipeline CI/CD (compilation LaTeX, génération multi-format & release)
 ├── Originaux/                      # Scans des fascicules et transcription alternative
-│   ├── Ch 1.pdf
-│   ├── ...
-│   ├── Ch 38.pdf
-│   └── Benoît Coste, Totalité.pdf
+│   ├── Version dactylographiée - source Grosbois/
+│   │   ├── Ch 1.pdf
+│   │   ├── ...
+│   │   └── Ch 38.pdf
+│   └── Transcription Jacques Lépine 2023.pdf
 ├── Memoires de Benoit Coste.tex   # Source LaTeX principal du document
 ├── genealogie/                     # Chapitre et configuration de régénération
 ├── scripts/                        # Audit, génération et contrôles public-safe

@@ -1,6 +1,6 @@
 # Compléments issus de la transcription alternative
 
-Source ajoutée : `Originaux/Benoît Coste, Totalité.pdf` (440 pages).
+Source ajoutée : `Originaux/Transcription Jacques Lépine 2023.pdf` (440 pages).
 Les numéros ci-dessous désignent les pages du PDF, qui correspondent aux
 numéros imprimés pour les passages cités.
 
