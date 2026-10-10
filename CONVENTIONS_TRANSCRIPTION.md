@@ -8,7 +8,8 @@ Ce document consigne l'ensemble des règles éditoriales, typographiques, techni
 
 ### 1.1 Dépôt Git
 - Le projet est versionné sous Git dans le répertoire racine.
-- Les fichiers sources originaux (scans PDF) sont conservés dans `Originaux/`.
+- Les fichiers sources originaux sont conservés dans `Originaux/`. Les 38 scans du tapuscrit sont classés dans `Version dactylographiée - source Grosbois/` ; la transcription complémentaire est nommée `Transcription Jacques Lépine 2023.pdf`.
+- Les scans de la copie manuscrite Berloty Boffard sont classés dans `Originaux/Version manuscrite. source Famille Berloty Boffard/`, par tome et numéro de scan. Ce numéro exprime l’ordre de lecture et ne remplace pas la pagination manuscrite. L’inventaire conserve les noms d’origine et les correspondances des PDF redondants ; les variantes annotées et les repères sont distincts des scans de référence.
 - Le document principal est `Memoires de Benoit Coste.tex`.
 - Les fichiers auxiliaires LaTeX (`*.aux`, `*.log`, `*.toc`, etc.) sont exclus via `.gitignore`.
 
@@ -86,7 +87,7 @@ Le document utilise la classe `report` avec les packages suivants :
 - Si la note originale précise une mention d'auteur, la reproduire fidèlement : `(Note de l'auteur)` ou `(NOTE DE L'AUTEUR)`.
 
 ### 3.5 Source complémentaire et interventions éditoriales
-- La transcription alternative est conservée dans `Originaux/Benoît Coste, Totalité.pdf` ; les scans des 38 fascicules restent la source de base.
+- La transcription alternative est conservée dans `Originaux/Transcription Jacques Lépine 2023.pdf` ; les scans des 38 fascicules restent la source de base.
 - Les passages de Benoît Coste plus développés dans cette source remplacent les résumés ou passages abrégés du premier tapuscrit. L'introduction de l'auteur et son plan en cinq époques sont rétablis avant la première époque.
 - Conserver les 38 chapitres des fascicules : les limites des chapitres 1 à 4 diffèrent parfois dans la transcription alternative. Une différence de découpage ne justifie pas de répéter un passage.
 - Préserver les informations et notes déjà présentes dans la source de base. Vérifier les écarts dans leur contexte : une note déplacée en bas de page du PDF ne constitue pas un complément nouveau.
@@ -153,41 +154,41 @@ Le document utilise la classe `report` avec les packages suivants :
 
 | Chapitre | Fichier source | Titre normalisé | Statut |
 | :---: | :---: | :--- | :---: |
-| **Ch 1** | `Originaux/Ch 1.pdf` | Premières années et Jeunesse (1781--1800) | Transcrit |
-| **Ch 2** | `Originaux/Ch 2.pdf` | Souvenirs du Siège de Lyon et de ses suites (1793) | Transcrit |
-| **Ch 3** | `Originaux/Ch 3.pdf` | Souvenirs de Constance (1794--1796) | Transcrit |
-| **Ch 4** | `Originaux/Ch 4.pdf` | Souvenirs de Noefels et pèlerinage à N.-D. des Hermites (1796--1797) | Transcrit |
-| **Ch 5** | `Originaux/Ch 5.pdf` | Souvenirs de l'état de la religion en France (1797) | Transcrit |
-| **Ch 6** | `Originaux/Ch 6.pdf` | Souvenirs de l'élection de Pie VII, du 18 brumaire et de mon entrée dans le commerce (1798--1800) | Transcrit |
-| **Ch 7** | `Originaux/Ch 7.pdf` | Souvenirs des premières heures de liberté accordées à la religion (1800--1801) | Transcrit |
-| **Ch 8** | `Originaux/Ch 8.pdf` | Souvenirs de la signature du Concordat | Transcrit |
-| **Ch 9** | `Originaux/Ch 9.pdf` | Souvenirs de la publication du Concordat et de l'ouverture de l'église de Saint Jean | Transcrit |
-| **Ch 10** | `Originaux/Ch 10.pdf` | Souvenirs de la première procession aux Chartreux et de l'ouverture de l'église de St Pierre | Transcrit |
-| **Ch 11** | `Originaux/Ch 11.pdf` | Souvenirs de l'ouverture de l'église d'Écully, de quelques amis et de la mort de mon père | Transcrit |
-| **Ch 12** | `Originaux/Ch 12.pdf` | Souvenirs de la rétractation du curé de St Pierre et de l'extinction du schisme | Transcrit |
-| **Ch 13** | `Originaux/Ch 13.pdf` | Souvenirs du rétablissement du culte extérieur, de la fondation de l'œuvre des prisons et de celle des confréries du Saint Sacrement | Transcrit |
-| **Ch 14** | `Originaux/Ch 14.pdf` | Souvenirs des deux passages du Pape à Lyon et de l'ouverture de l'église de Fourvières | Transcrit |
-| **Ch 15** | `Originaux/Ch 15.pdf` | Souvenir du mariage de ma sœur, de mon entrée au bureau de bienfaisance et de mon mariage | Transcrit |
-| **Ch 16** | `Originaux/Ch 16.pdf` | Souvenirs de la vocation de ma sœur Catherine et de notre vie de famille | Transcrit |
-| **Ch 17** | `Originaux/Ch 17.pdf` | Souvenirs de la persécution exercée par Napoléon contre le Pape Pie VII | Transcrit |
-| **Ch 18** | `Originaux/Ch 18.pdf` | Souvenirs de la campagne de Russie (1812) et de l'invasion de la France (1814-1815) | Transcrit |
-| **Ch 19** | `Originaux/Ch 19.pdf` | Souvenirs du retour du Pape Pie VII à Rome et de la Restauration | Transcrit |
-| **Ch 20** | `Originaux/Ch 20.pdf` | Souvenirs des Cent Jours et de ma captivité | Transcrit |
-| **Ch 21** | `Originaux/Ch 21.pdf` | Souvenirs d'une procession à Fourvière, de l'érection de la croix de la place St Pierre et du rétablissement de la confrérie des Martyrs | Transcrit |
-| **Ch 22** | `Originaux/Ch 22.pdf` | Souvenirs de ma vie militaire (Campagne de la Côte Saint-André) | Transcrit |
-| **Ch 23** | `Originaux/Ch 23.pdf` | Souvenirs de famille et de l'administration des prisons (1817) | Transcrit |
-| **Ch 24** | `Originaux/Ch 24.pdf` | Souvenirs de la naissance du duc de Bordeaux, de celle de mes filles et du voyage de Bellevaux (1818--1821) | Transcrit |
-| **Ch 25** | `Originaux/Ch 25.pdf` | Souvenirs de l'établissement de l'œuvre de la Propagation de la Foi (1822) | Transcrit |
-| **Ch 26** | `Originaux/Ch 26.pdf` | Souvenirs de la naissance de mes garçons, de la première messe de mon beau-frère et de la mort de ma mère (1822--1826) | Transcrit |
-| **Ch 27** | `Originaux/Ch 27.pdf` | Souvenirs du Jubilé (1826) | Transcrit |
-| **Ch 28** | `Originaux/Ch 28.pdf` | Souvenirs de la mort de Pierre, de la première communion de mes filles et de quelques événements de famille (1826--1829) | Transcrit |
-| **Ch 29** | `Originaux/Ch 29.pdf` | Souvenirs de la Révolution de Juillet (1830) | Transcrit |
-| **Ch 30** | `Originaux/Ch 30.pdf` | Souvenirs de la mort de mon beau-père, de celle de ma belle-mère et de la procession de La Guillotière (1831) | Transcrit |
-| **Ch 31** | `Originaux/Ch 31.pdf` | Souvenirs des journées de novembre (1831) | Transcrit |
-| **Ch 32** | `Originaux/Ch 32.pdf` | Souvenirs de l'invasion du choléra en France (1832) | Transcrit |
-| **Ch 33** | `Originaux/Ch 33.pdf` | Souvenirs de la première communion de François, de la naissance et de la mort de Joséphine et autres souvenirs de famille (1833) | Transcrit |
-| **Ch 34** | `Originaux/Ch 34.pdf` | Souvenirs des journées d'avril (1834) | Transcrit |
-| **Ch 35** | `Originaux/Ch 35.pdf` | Souvenirs de nos voyages de famille, de la mort de ma sœur Franchet, du mariage de Marie, etc. (1835--1839) | Transcrit |
-| **Ch 36** | `Originaux/Ch 36.pdf` | Tristes souvenirs de 1840 | Transcrit |
-| **Ch 37** | `Originaux/Ch 37.pdf` | Souvenirs de mon départ de Lyon et de mon voyage jusqu'à Londres (1840) | Transcrit |
-| **Ch 38** | `Originaux/Ch 38.pdf` | Conclusion (Partie religieuse, Partie politique, Partie personnelle, Actions de grâces) | Transcrit |
+| **Ch 1** | `Originaux/Version dactylographiée - source Grosbois/Ch 1.pdf` | Premières années et Jeunesse (1781--1800) | Transcrit |
+| **Ch 2** | `Originaux/Version dactylographiée - source Grosbois/Ch 2.pdf` | Souvenirs du Siège de Lyon et de ses suites (1793) | Transcrit |
+| **Ch 3** | `Originaux/Version dactylographiée - source Grosbois/Ch 3.pdf` | Souvenirs de Constance (1794--1796) | Transcrit |
+| **Ch 4** | `Originaux/Version dactylographiée - source Grosbois/Ch 4.pdf` | Souvenirs de Noefels et pèlerinage à N.-D. des Hermites (1796--1797) | Transcrit |
+| **Ch 5** | `Originaux/Version dactylographiée - source Grosbois/Ch 5.pdf` | Souvenirs de l'état de la religion en France (1797) | Transcrit |
+| **Ch 6** | `Originaux/Version dactylographiée - source Grosbois/Ch 6.pdf` | Souvenirs de l'élection de Pie VII, du 18 brumaire et de mon entrée dans le commerce (1798--1800) | Transcrit |
+| **Ch 7** | `Originaux/Version dactylographiée - source Grosbois/Ch 7.pdf` | Souvenirs des premières heures de liberté accordées à la religion (1800--1801) | Transcrit |
+| **Ch 8** | `Originaux/Version dactylographiée - source Grosbois/Ch 8.pdf` | Souvenirs de la signature du Concordat | Transcrit |
+| **Ch 9** | `Originaux/Version dactylographiée - source Grosbois/Ch 9.pdf` | Souvenirs de la publication du Concordat et de l'ouverture de l'église de Saint Jean | Transcrit |
+| **Ch 10** | `Originaux/Version dactylographiée - source Grosbois/Ch 10.pdf` | Souvenirs de la première procession aux Chartreux et de l'ouverture de l'église de St Pierre | Transcrit |
+| **Ch 11** | `Originaux/Version dactylographiée - source Grosbois/Ch 11.pdf` | Souvenirs de l'ouverture de l'église d'Écully, de quelques amis et de la mort de mon père | Transcrit |
+| **Ch 12** | `Originaux/Version dactylographiée - source Grosbois/Ch 12.pdf` | Souvenirs de la rétractation du curé de St Pierre et de l'extinction du schisme | Transcrit |
+| **Ch 13** | `Originaux/Version dactylographiée - source Grosbois/Ch 13.pdf` | Souvenirs du rétablissement du culte extérieur, de la fondation de l'œuvre des prisons et de celle des confréries du Saint Sacrement | Transcrit |
+| **Ch 14** | `Originaux/Version dactylographiée - source Grosbois/Ch 14.pdf` | Souvenirs des deux passages du Pape à Lyon et de l'ouverture de l'église de Fourvières | Transcrit |
+| **Ch 15** | `Originaux/Version dactylographiée - source Grosbois/Ch 15.pdf` | Souvenir du mariage de ma sœur, de mon entrée au bureau de bienfaisance et de mon mariage | Transcrit |
+| **Ch 16** | `Originaux/Version dactylographiée - source Grosbois/Ch 16.pdf` | Souvenirs de la vocation de ma sœur Catherine et de notre vie de famille | Transcrit |
+| **Ch 17** | `Originaux/Version dactylographiée - source Grosbois/Ch 17.pdf` | Souvenirs de la persécution exercée par Napoléon contre le Pape Pie VII | Transcrit |
+| **Ch 18** | `Originaux/Version dactylographiée - source Grosbois/Ch 18.pdf` | Souvenirs de la campagne de Russie (1812) et de l'invasion de la France (1814-1815) | Transcrit |
+| **Ch 19** | `Originaux/Version dactylographiée - source Grosbois/Ch 19.pdf` | Souvenirs du retour du Pape Pie VII à Rome et de la Restauration | Transcrit |
+| **Ch 20** | `Originaux/Version dactylographiée - source Grosbois/Ch 20.pdf` | Souvenirs des Cent Jours et de ma captivité | Transcrit |
+| **Ch 21** | `Originaux/Version dactylographiée - source Grosbois/Ch 21.pdf` | Souvenirs d'une procession à Fourvière, de l'érection de la croix de la place St Pierre et du rétablissement de la confrérie des Martyrs | Transcrit |
+| **Ch 22** | `Originaux/Version dactylographiée - source Grosbois/Ch 22.pdf` | Souvenirs de ma vie militaire (Campagne de la Côte Saint-André) | Transcrit |
+| **Ch 23** | `Originaux/Version dactylographiée - source Grosbois/Ch 23.pdf` | Souvenirs de famille et de l'administration des prisons (1817) | Transcrit |
+| **Ch 24** | `Originaux/Version dactylographiée - source Grosbois/Ch 24.pdf` | Souvenirs de la naissance du duc de Bordeaux, de celle de mes filles et du voyage de Bellevaux (1818--1821) | Transcrit |
+| **Ch 25** | `Originaux/Version dactylographiée - source Grosbois/Ch 25.pdf` | Souvenirs de l'établissement de l'œuvre de la Propagation de la Foi (1822) | Transcrit |
+| **Ch 26** | `Originaux/Version dactylographiée - source Grosbois/Ch 26.pdf` | Souvenirs de la naissance de mes garçons, de la première messe de mon beau-frère et de la mort de ma mère (1822--1826) | Transcrit |
+| **Ch 27** | `Originaux/Version dactylographiée - source Grosbois/Ch 27.pdf` | Souvenirs du Jubilé (1826) | Transcrit |
+| **Ch 28** | `Originaux/Version dactylographiée - source Grosbois/Ch 28.pdf` | Souvenirs de la mort de Pierre, de la première communion de mes filles et de quelques événements de famille (1826--1829) | Transcrit |
+| **Ch 29** | `Originaux/Version dactylographiée - source Grosbois/Ch 29.pdf` | Souvenirs de la Révolution de Juillet (1830) | Transcrit |
+| **Ch 30** | `Originaux/Version dactylographiée - source Grosbois/Ch 30.pdf` | Souvenirs de la mort de mon beau-père, de celle de ma belle-mère et de la procession de La Guillotière (1831) | Transcrit |
+| **Ch 31** | `Originaux/Version dactylographiée - source Grosbois/Ch 31.pdf` | Souvenirs des journées de novembre (1831) | Transcrit |
+| **Ch 32** | `Originaux/Version dactylographiée - source Grosbois/Ch 32.pdf` | Souvenirs de l'invasion du choléra en France (1832) | Transcrit |
+| **Ch 33** | `Originaux/Version dactylographiée - source Grosbois/Ch 33.pdf` | Souvenirs de la première communion de François, de la naissance et de la mort de Joséphine et autres souvenirs de famille (1833) | Transcrit |
+| **Ch 34** | `Originaux/Version dactylographiée - source Grosbois/Ch 34.pdf` | Souvenirs des journées d'avril (1834) | Transcrit |
+| **Ch 35** | `Originaux/Version dactylographiée - source Grosbois/Ch 35.pdf` | Souvenirs de nos voyages de famille, de la mort de ma sœur Franchet, du mariage de Marie, etc. (1835--1839) | Transcrit |
+| **Ch 36** | `Originaux/Version dactylographiée - source Grosbois/Ch 36.pdf` | Tristes souvenirs de 1840 | Transcrit |
+| **Ch 37** | `Originaux/Version dactylographiée - source Grosbois/Ch 37.pdf` | Souvenirs de mon départ de Lyon et de mon voyage jusqu'à Londres (1840) | Transcrit |
+| **Ch 38** | `Originaux/Version dactylographiée - source Grosbois/Ch 38.pdf` | Conclusion (Partie religieuse, Partie politique, Partie personnelle, Actions de grâces) | Transcrit |
