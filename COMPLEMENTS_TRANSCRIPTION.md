@@ -24,6 +24,12 @@ de Benoît Coste, dans l'ordre chronologique. Ils restent distincts de son réci
 | Avant-propos de Michel de Viviès et Marie-Madeleine Plancher-Coste, Lyon, mars 2009 | `Originaux/Transcription Jacques Lépine 2023.pdf`, anciennement `BenoitCoste Totalité.pdf` | 5–6 |
 | Préambule de Jacques Lépine, 15 avril 2023 | `Originaux/Transcription Jacques Lépine 2023.pdf` | 3–4 (pagination imprimée 3 et 5) |
 
+Les introductions des préfaces de Léon Peillon, Michel de Viviès et
+Marie-Madeleine Plancher-Coste, et Jacques Lépine portent des notes de filiation
+fournies par Timothée Gros. Elles sont identifiées comme notes du transcripteur,
+avec noms en casse usuelle, accents et flèches entre générations. Pour Léon
+Peillon, la filiation est celle de son épouse Jacqueline Berloty.
+
 La correction non signée relative à la présence de François Coste au décès de
 son père est conservée en note, avec attribution au recueil, sans la confondre
 avec les mots de Léon Peillon. La date du retour du manuscrit du Canada est bien
